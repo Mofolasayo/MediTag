@@ -4,7 +4,7 @@
             "outputFile": "com.example.meditap.app-mergeDebugResources-9:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/Users/mofolasayoosikoya/MediTap/android/app/src/main/res/values-night/styles.xml",
+                    "source": "/Users/mofolasayoosikoya/MediTag/android/app/src/main/res/values-night/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
