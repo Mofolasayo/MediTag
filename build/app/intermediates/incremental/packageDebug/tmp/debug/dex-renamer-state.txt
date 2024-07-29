@@ -1,4 +1,4 @@
-#Mon Jul 29 13:12:43 EAT 2024
+#Mon Jul 29 22:50:32 EAT 2024
 base.0=C\:\\Users\\admin\\Documents\\HNG\\MediTag\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\admin\\Documents\\HNG\\MediTag\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\admin\\Documents\\HNG\\MediTag\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex

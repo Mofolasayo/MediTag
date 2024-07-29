@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:meditap/utils/icons.dart';
 
 class FilterModal extends StatefulWidget {
   final bool sortAscending;
@@ -50,7 +52,7 @@ class _FilterModalState extends State<FilterModal> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: value ? Colors.blue : Colors.grey),
+          border: Border.all(color: value ? Colors.blue : Colors.grey.shade300),
           color: value ? Colors.blue.shade50 : Colors.white,
         ),
         padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
@@ -66,7 +68,7 @@ class _FilterModalState extends State<FilterModal> {
             Expanded(
               child: Text(
                 text,
-                style: TextStyle(fontSize: 14),
+                style: TextStyle(fontSize: 12, color: Colors.grey.shade700),
               ),
             ),
           ],
@@ -76,7 +78,7 @@ class _FilterModalState extends State<FilterModal> {
   }
 
   Widget _buildSortOption(String text, bool value, Function(bool?) onChanged,
-      IconData icon, String sortOrder) {
+      String iconSvg, String sortOrder) {
     return Row(
       children: [
         Checkbox(
@@ -97,7 +99,12 @@ class _FilterModalState extends State<FilterModal> {
                 style: TextStyle(
                     color: value ? Colors.blue : Colors.black, fontSize: 14),
               ),
-              Icon(icon, color: value ? Colors.blue : Colors.black, size: 16),
+              SvgPicture.string(
+                iconSvg,
+                color: value ? Colors.blue : Colors.black,
+                width: 16,
+                height: 16,
+              ),
             ],
           ),
         ),
@@ -161,7 +168,7 @@ class _FilterModalState extends State<FilterModal> {
                   if (_sortAscending) _sortDescending = false;
                 });
               },
-              Icons.arrow_upward,
+              MediTagIcons.mediTapPatientAscendFilter,
               'Ascending',
             ),
             _buildSortOption(
@@ -173,17 +180,17 @@ class _FilterModalState extends State<FilterModal> {
                   if (_sortDescending) _sortAscending = false;
                 });
               },
-              Icons.arrow_downward,
+              MediTagIcons.mediTapPatientAscendFilter,
               'Descending',
             ),
             SizedBox(height: 10),
             Text('Specialty',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
             Expanded(
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 3.5,
+                  childAspectRatio: 4.5,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                 ),
@@ -199,7 +206,6 @@ class _FilterModalState extends State<FilterModal> {
                         } else {
                           _selectedSpecialties.remove(_specialties[index]);
                         }
-                        ;
                       });
                     },
                   );
@@ -215,13 +221,17 @@ class _FilterModalState extends State<FilterModal> {
                   'selectedSpecialties': _selectedSpecialties,
                 });
               },
-              child: Container(
-                width: double.infinity,
-                alignment: Alignment.center,
-                padding: EdgeInsets.symmetric(vertical: 16),
-                child: Text('Save & Apply', style: TextStyle(fontSize: 16)),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                minimumSize: Size(double.infinity, 48),
               ),
+              child: Text('Save & Apply',
+                  style: TextStyle(fontSize: 16, color: Colors.white)),
             ),
+            SizedBox(height: 20),
           ],
         ),
       ),

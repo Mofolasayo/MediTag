@@ -90,8 +90,8 @@ class DoctorInfo extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Bio',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      style: TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.normal)),
                   SizedBox(height: 10),
                   Text(
                     'Dr. $name is a board-certified $specialty with 15 years of experience. '
@@ -101,8 +101,8 @@ class DoctorInfo extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   Text('Available Times',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      style: TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.normal)),
                   SizedBox(height: 10),
                   _buildAvailabilityRow('Monday', '9:00am - 5:00pm'),
                   _buildAvailabilityRow('Tuesday', '9:00am - 5:00pm'),
