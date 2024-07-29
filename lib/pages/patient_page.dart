@@ -161,15 +161,16 @@ class _PatientPageState extends State<PatientPage> {
                     subtitle: Text(_filteredDoctors[index]['specialty']!,
                         style: TextStyle(color: Colors.grey)),
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DoctorInfo(
-                            name: _filteredDoctors[index]['name']!,
-                            specialty: _filteredDoctors[index]['specialty']!,
-                          ),
-                        ),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     // Todo
+                      //     builder: (context) => DoctorInfo(
+                      //       name: _filteredDoctors[index]['name']!,
+                      //       specialty: _filteredDoctors[index]['specialty']!,
+                      //     ),
+                      //   ),
+                      // );
                     },
                   );
                 },
