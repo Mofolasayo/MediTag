@@ -29,6 +29,12 @@ class MyApp extends StatelessWidget {
               fontSize: 16
           ),
         ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            backgroundColor: primary500,
+          ))
       ),
       home: const SplashScreen(),
     );

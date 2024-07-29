@@ -17,6 +17,7 @@ INJECTED from /Users/mofolasayoosikoya/MediTag/android/app/src/main/AndroidManif
 INJECTED from /Users/mofolasayoosikoya/MediTag/android/app/src/main/AndroidManifest.xml:1:1-45:12
 INJECTED from /Users/mofolasayoosikoya/MediTag/android/app/src/main/AndroidManifest.xml:1:1-45:12
 MERGED from /Users/mofolasayoosikoya/MediTag/android/app/src/main/AndroidManifest.xml:1:1-45:12
+MERGED from [:flutter_native_splash] /Users/mofolasayoosikoya/MediTag/build/flutter_native_splash/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:nfc_manager] /Users/mofolasayoosikoya/MediTag/build/nfc_manager/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:path_provider_android] /Users/mofolasayoosikoya/MediTag/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/mofolasayoosikoya/.gradle/caches/transforms-3/2a215381204751055df81b6269e717b7/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:17:1-23:12
@@ -69,6 +70,8 @@ uses-sdk
 INJECTED from /Users/mofolasayoosikoya/MediTag/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/mofolasayoosikoya/MediTag/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/mofolasayoosikoya/MediTag/android/app/src/main/AndroidManifest.xml
+MERGED from [:flutter_native_splash] /Users/mofolasayoosikoya/MediTag/build/flutter_native_splash/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_native_splash] /Users/mofolasayoosikoya/MediTag/build/flutter_native_splash/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:nfc_manager] /Users/mofolasayoosikoya/MediTag/build/nfc_manager/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:nfc_manager] /Users/mofolasayoosikoya/MediTag/build/nfc_manager/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] /Users/mofolasayoosikoya/MediTag/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41

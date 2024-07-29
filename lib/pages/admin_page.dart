@@ -29,6 +29,7 @@ class _AdminPageState extends State<AdminPage> {
     ];
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: SvgPicture.string(MediTagIcons.mediTapLogo),
         centerTitle: true,
       ),

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:meditap/pages/admin_page.dart';
 import 'package:meditap/screens/welcome_screen.dart';
 import 'package:meditap/utils/colors.dart';
-import 'package:meditap/utils/constants.dart';
 import 'package:meditap/utils/icons.dart';
 
 
