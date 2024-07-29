@@ -168,7 +168,7 @@ class _FilterModalState extends State<FilterModal> {
                   if (_sortAscending) _sortDescending = false;
                 });
               },
-              MediTagIcons.mediTapPatientAscendFilter,
+              MediTagIcons.whiteBackIcon,
               'Ascending',
             ),
             _buildSortOption(
