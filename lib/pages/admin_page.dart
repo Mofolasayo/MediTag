@@ -25,7 +25,6 @@ class _AdminPageState extends State<AdminPage> {
     final List<Widget> items = [
       const Dashboard(),
       const Search(),
-      
     ];
     return Scaffold(
       appBar: AppBar(
@@ -34,7 +33,6 @@ class _AdminPageState extends State<AdminPage> {
       ),
       body: items[currentIndex],
       bottomNavigationBar: Padding(
-        
         padding:
             const EdgeInsets.only(left: 35.0, right: 35.0, top: 5, bottom: 10),
         child: Container(
@@ -48,12 +46,11 @@ class _AdminPageState extends State<AdminPage> {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(100),
-            
             child: BottomNavigationBar(
               iconSize: 24,
 
               type: BottomNavigationBarType.fixed,
-              
+
               backgroundColor: const Color.fromRGBO(248, 248, 248, 1),
               elevation: 6,
               // selectedItemColor: primary,
@@ -70,7 +67,6 @@ class _AdminPageState extends State<AdminPage> {
                 BottomNavigationBarItem(
                     icon: SvgPicture.string(MediTagIcons.searchIcon),
                     label: 'Search'),
-                
               ],
             ),
           ),
