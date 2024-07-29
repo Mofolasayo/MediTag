@@ -31,7 +31,6 @@ class _AdminPageState extends State<AdminPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: SvgPicture.string(MediTagIcons.mediTapLogo),
-        centerTitle: true,
       ),
       body: items[currentIndex],
       bottomNavigationBar: Padding(

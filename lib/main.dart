@@ -26,8 +26,20 @@ class MyApp extends StatelessWidget {
           bodyMedium: TextStyle(
               fontFamily: 'Open_Sans',
               fontWeight: FontWeight.w600,
-              fontSize: 16
+                color: neutral900,
+                fontSize: 16,
           ),
+              bodyLarge: TextStyle(
+                fontFamily: 'Open_Sans',
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
+                color: neutral900,
+              ),
+              bodySmall: TextStyle(
+                  fontFamily: 'Open_Sans',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16,
+                  color: neutral900)
         ),
           elevatedButtonTheme: ElevatedButtonThemeData(
               style: ElevatedButton.styleFrom(

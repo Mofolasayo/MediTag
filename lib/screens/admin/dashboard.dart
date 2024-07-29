@@ -1,46 +1,107 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:meditap/screens/admin/how_to_use.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/dotted_box.dart';
 import 'package:meditap/utils/icons.dart';
+import 'package:meditap/screens/scan_screen.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(top: 20.0, left: 20, right: 20),
+    return Padding(
+      padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              DottedBorderContainer(
-                child: TagOptions(
-                  option: 'Add a Doctor',
-                  firstLine: 'Make an addition to the',
-                  secondLine: 'number of doctors',
-                  icon: MediTagIcons.addIcon,
+              GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return Container(
+                        padding: const EdgeInsets.all(16),
+                        height: 330,
+                        width: 390,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SvgPicture.string(MediTagIcons.tagAdded),
+                            //SizedBox(height: 10),
+                            const Text("Tag Added Successfully"),
+                            //SizedBox(height: 16),
+
+                            const Text(
+                              "Your Tag has been added to the MediTag app",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: neutral500,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            SizedBox(
+                              height: 44,
+                              width: 342,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text(
+                                  'Done',
+                                  style: TextStyle(
+                                      color: primary50,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: const DottedBorderContainer(
+                  child: TagOptions(
+                    option: 'Add a Doctor',
+                    firstLine: 'Make an addition to the',
+                    secondLine: 'number of doctors',
+                    icon: MediTagIcons.addIcon,
+                  ),
                 ),
               ),
-              Spacer(),
-              TagOptions(
-                icon: MediTagIcons.readATag,
-                option: 'Read a Tag',
-                firstLine: 'Move near a tag to view',
-                secondLine: 'its content',
+              const Spacer(),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => ScanPage()));
+                },
+                child: const TagOptions(
+                  icon: MediTagIcons.readATag,
+                  option: 'Read a Tag',
+                  firstLine: 'Move near a tag to view',
+                  secondLine: 'its content',
+                ),
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          TagOptions(
-              option: 'How to use',
-              firstLine: 'Read through our guide',
-              secondLine: 'to learn how to use',
-              icon: MediTagIcons.howToUse)
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const HowToUse()));
+            },
+            child: const TagOptions(
+                option: 'How to use',
+                firstLine: 'Read through our guide',
+                secondLine: 'to learn how to use',
+                icon: MediTagIcons.howToUse),
+          )
         ],
       ),
     );
