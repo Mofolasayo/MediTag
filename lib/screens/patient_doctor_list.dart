@@ -20,7 +20,7 @@ class _PatientDoctorsListState extends State<PatientDoctorsList> {
   Widget build(BuildContext context) {
     final doctorProvider =
         Provider.of<DoctorFormProvider>(context, listen: true);
-    doctorProvider.getDoctorsFromHive();
+    doctorProvider.getDoctors();
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -35,6 +35,9 @@ class _PatientDoctorsListState extends State<PatientDoctorsList> {
                       height: 48,
                       child: TextField(
                           controller: controller,
+                          onChanged: (value) {
+                            doctorProvider.searchDoctor(value);
+                          },
                           decoration: InputDecoration(
                               prefixIcon: Padding(
                                 padding: const EdgeInsets.only(left: 5.0),

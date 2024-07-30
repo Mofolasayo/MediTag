@@ -16,7 +16,7 @@ class DoctorsListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final doctorProvider =
         Provider.of<DoctorFormProvider>(context, listen: true);
-    doctorProvider.getDoctorsFromHive();
+    doctorProvider.getDoctors();
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
