@@ -3,12 +3,20 @@ import 'package:meditap/providers/doctorform_provider.dart';
 import 'package:meditap/screens/admin/doctor_bio_schedule.dart';
 import 'package:meditap/screens/admin/doctors_list_screen.dart';
 import 'package:meditap/screens/admin/edit_doctor_info.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:meditap/models/doctor.dart';
 import 'package:meditap/screens/splash_screen.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/screens/admin/add_doctors_form.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialise Hive
+  await Hive.initFlutter();
+  // Register Hive Adapter
+  Hive.registerAdapter(DoctorAdapter());
   runApp(
     ChangeNotifierProvider(
       create: (context) => DoctorFormProvider(),
@@ -34,14 +42,24 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         textTheme: const TextTheme(
           bodyMedium: TextStyle(
-              fontFamily: 'Open_Sans',
-              fontWeight: FontWeight.w600,
-              fontSize: 16),
+            fontFamily: 'Open_Sans',
+            fontWeight: FontWeight.w600,
+            fontSize: 16,
+          ),
+          bodyLarge: TextStyle(
+            fontFamily: 'Open_Sans',
+            fontWeight: FontWeight.w600,
+            fontSize: 18,
+          ),
+          bodySmall: TextStyle(
+            fontFamily: 'Open_Sans',
+            fontWeight: FontWeight.w400,
+            fontSize: 16,
+          ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             backgroundColor: primary500,
           ),
         ),
@@ -60,8 +78,7 @@ class MyApp extends StatelessWidget {
           ),
           labelStyle: const TextStyle(color: neutral400),
           hintStyle: const TextStyle(color: neutral400),
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+          contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
         ),
         checkboxTheme: CheckboxThemeData(
           shape: RoundedRectangleBorder(
@@ -69,9 +86,7 @@ class MyApp extends StatelessWidget {
           ),
           side: WidgetStateBorderSide.resolveWith(
             (states) => BorderSide(
-              color: states.contains(WidgetState.selected)
-                  ? primary500
-                  : Colors.grey,
+              color: states.contains(WidgetState.selected) ? primary500 : Colors.grey,
               width: 1,
             ),
           ),
@@ -79,9 +94,7 @@ class MyApp extends StatelessWidget {
             (states) => primary500,
           ),
           fillColor: WidgetStateProperty.resolveWith(
-            (states) => states.contains(WidgetState.selected)
-                ? primary100
-                : Colors.transparent,
+            (states) => states.contains(WidgetState.selected) ? primary100 : Colors.transparent,
           ),
         ),
       ),

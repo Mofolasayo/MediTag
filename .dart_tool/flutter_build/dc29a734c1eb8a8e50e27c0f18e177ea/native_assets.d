@@ -1,1 +1,0 @@
- /Users/mac/Desktop/HNG_INTERNSHIP_PROJECTS/app_projects/MediTag/.dart_tool/flutter_build/dc29a734c1eb8a8e50e27c0f18e177ea/native_assets.yaml: 

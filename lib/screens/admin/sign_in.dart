@@ -80,7 +80,7 @@ class SignIn extends StatelessWidget {
                           const SizedBox(
                             height: 25,
                           ),
-                          Container(
+                          SizedBox(
                             width: Constants.deviceWidth(context),
                             height: 48,
                             child: ElevatedButton(
@@ -89,7 +89,8 @@ class SignIn extends StatelessWidget {
                                       false) {
                                     Navigator.of(context).pushReplacement(
                                         MaterialPageRoute(
-                                            builder: (context) => AdminPage()));
+                                            builder: (context) =>
+                                                const AdminPage()));
                                   }
                                 },
                                 child: const Text(
