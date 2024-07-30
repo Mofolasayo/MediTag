@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meditap/common_widgets/my_textfield.dart';
-import 'package:meditap/models/doctor.dart';
 import 'package:meditap/providers/doctorform_provider.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/icons.dart';
@@ -9,28 +8,42 @@ import 'package:meditap/utils/text_style.dart';
 import 'package:provider/provider.dart';
 
 class EditDoctorsForm extends StatelessWidget {
-  final Doctor doctor; // The original doctor object to be edited
+  final String? initialFirstName;
+  final String? initialLastName;
+  final String? initialSpecialty;
+  final String? initialGender;
+  final String? initialBio;
+  final String? initialPhoneNumber;
+  final String? initialEmailAddress;
+  final List<String>? initialSchedule;
 
   const EditDoctorsForm({
     super.key,
-    required this.doctor,
+    this.initialFirstName,
+    this.initialLastName,
+    this.initialSpecialty,
+    this.initialGender,
+    this.initialBio,
+    this.initialPhoneNumber,
+    this.initialEmailAddress,
+    this.initialSchedule,
   });
 
   @override
   Widget build(BuildContext context) {
     final doctorForm = Provider.of<DoctorFormProvider>(context);
 
-    // Initialize the form fields with the doctor details
+    // Initialize the form fields with the initial values if provided
     WidgetsBinding.instance.addPostFrameCallback((_) {
       doctorForm.setInitialValues(
-        doctor.firstname,
-        doctor.lastname,
-        doctor.specialty,
-        doctor.gender,
-        doctor.bio,
-        doctor.phoneNumber,
-        doctor.email,
-        doctor.schedule,
+        initialFirstName,
+        initialLastName,
+        initialSpecialty,
+        initialGender,
+        initialBio,
+        initialPhoneNumber,
+        initialEmailAddress,
+        initialSchedule,
       );
     });
 
@@ -166,19 +179,6 @@ class EditDoctorsForm extends StatelessWidget {
                     height: 44,
                     child: ElevatedButton(
                       onPressed: () {
-                        final updatedDoctor = Doctor(
-                          firstname: doctorForm.firstName ?? '',
-                          lastname: doctorForm.lastName ?? '',
-                          specialty: doctorForm.specialty ?? '',
-                          gender: doctorForm.gender ?? '',
-                          bio: doctorForm.bio ?? '',
-                          phoneNumber: doctorForm.phoneNumber ?? '',
-                          email: doctorForm.emailAddress ?? '',
-                          schedule: doctorForm.schedule ?? [],
-                        );
-                        print(updatedDoctor);
-
-                        doctorForm.updateDoctorInHive(updatedDoctor);
                         Navigator.pop(context);
                       },
                       style: ElevatedButton.styleFrom(

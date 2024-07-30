@@ -84,7 +84,8 @@ class _PatientDoctorsListState extends State<PatientDoctorsList> {
                         itemCount: doctorProvider.doctorList.length,
                         itemBuilder: (context, index) {
                           return DoctorsListItem(
-                              doctor: doctorProvider.doctorList[index]);
+                            doctor: doctorProvider.doctorList[index],
+                          );
                         },
                       )
                     : Center(

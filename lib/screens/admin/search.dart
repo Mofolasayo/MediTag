@@ -32,7 +32,7 @@ class _SearchState extends State<Search> {
   Widget build(BuildContext context) {
     final doctorProvider =
         Provider.of<DoctorFormProvider>(context, listen: true);
-    doctorProvider.getDoctorsFromHive();
+    doctorProvider.getDoctors();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 13.0),
       child: SingleChildScrollView(
