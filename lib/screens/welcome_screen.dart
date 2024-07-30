@@ -67,42 +67,50 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: shade0,
-                                border: Border.all(
-                                  color: neutral100,
-                                  width: 1,
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context)
+                                    .pushReplacementNamed('/doctors-list');
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: shade0,
+                                  border: Border.all(
+                                    color: neutral100,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: SizedBox(
-                                height: 178,
-                                width: 180,
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    SvgPicture.string(MediTagIcons.patient),
-                                    const Text(
-                                      'Patient',
-                                      style: TextStyle(fontSize: 18),
-                                    ),
-                                    const Column(
-                                      children: [
-                                        Text(
-                                          'Are you looking for a',
-                                          style: TextStyle(
-                                              color: neutral500, fontSize: 14),
-                                        ),
-                                        Text(
-                                          "Doctor?",
-                                          style: TextStyle(
-                                              color: neutral500, fontSize: 14),
-                                        )
-                                      ],
-                                    ),
-                                  ],
+                                child: SizedBox(
+                                  height: 178,
+                                  width: 180,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      SvgPicture.string(MediTagIcons.patient),
+                                      const Text(
+                                        'Patient',
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                      const Column(
+                                        children: [
+                                          Text(
+                                            'Are you looking for a',
+                                            style: TextStyle(
+                                                color: neutral500,
+                                                fontSize: 14),
+                                          ),
+                                          Text(
+                                            "Doctor?",
+                                            style: TextStyle(
+                                                color: neutral500,
+                                                fontSize: 14),
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
