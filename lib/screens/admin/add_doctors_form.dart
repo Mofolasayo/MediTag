@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meditap/screens/admin/doctors_list_screen.dart';
-import 'package:meditap/utils/validator.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meditap/common_widgets/my_textfield.dart';
@@ -15,8 +14,6 @@ class AddDoctorsForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final doctorForm = Provider.of<DoctorFormProvider>(context);
-    final validator = Validator();
-    final _formKey = GlobalKey<FormState>();
 
     return Scaffold(
       appBar: AppBar(
@@ -45,7 +42,6 @@ class AddDoctorsForm extends StatelessWidget {
         leadingWidth: 75,
       ),
       body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
         child: Column(
           children: [
             Container(height: 20, color: neutral50),
@@ -58,11 +54,8 @@ class AddDoctorsForm extends StatelessWidget {
                     children: [
                       Flexible(
                         child: MyTextfield(
-                          validator: (value) =>
-                              validator.validateName(value, 'First Name'),
                           hint: 'First Name',
                           label: 'First Name',
-                          hasDropdown: false,
                           keyType: TextInputType.name,
                           onChanged: (value) =>
                               doctorForm.updateFirstName(value),
@@ -71,8 +64,6 @@ class AddDoctorsForm extends StatelessWidget {
                       const SizedBox(width: 20),
                       Flexible(
                         child: MyTextfield(
-                          validator: (value) =>
-                              validator.validateName(value, 'Last Name'),
                           hint: 'Last Name',
                           label: 'Last Name',
                           keyType: TextInputType.name,
@@ -84,8 +75,6 @@ class AddDoctorsForm extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   MyTextfield(
-                    validator: (value) =>
-                        validator.validateName(value, 'Specialty'),
                     hint: 'Select Specialty',
                     label: 'Specialty',
                     hasDropdown: true,
@@ -103,8 +92,6 @@ class AddDoctorsForm extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   MyTextfield(
-                    validator: (value) =>
-                        validator.validateName(value, 'Gender'),
                     hint: 'Select Gender',
                     label: 'Gender',
                     keyType: TextInputType.text,
@@ -114,7 +101,6 @@ class AddDoctorsForm extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   MyTextfield(
-                    validator: (value) => validator.validateName(value, 'Bio'),
                     hint: 'Write a short bio for the doctor',
                     label: 'Bio',
                     keyType: TextInputType.text,
@@ -123,7 +109,6 @@ class AddDoctorsForm extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   MyTextfield(
-                    validator: (value) => validator.validatePhoneNumber(value),
                     hint: '+234',
                     label: 'Phone Number',
                     keyType: TextInputType.phone,
@@ -131,7 +116,6 @@ class AddDoctorsForm extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   MyTextfield(
-                    validator: validator.validateEmail,
                     hint: 'sample@site.com',
                     label: 'Email Address',
                     keyType: TextInputType.emailAddress,
@@ -139,8 +123,6 @@ class AddDoctorsForm extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   MyTextfield(
-                    validator: (value) =>
-                        validator.validateName(value, 'Schedule'),
                     hint: 'Select Schedule',
                     label: 'Schedule',
                     title: 'Choose Available times',
@@ -164,7 +146,7 @@ class AddDoctorsForm extends StatelessWidget {
                     height: 44,
                     child: ElevatedButton(
                       onPressed: () {
-                        doctorForm.addOrUpdateDoctor();
+                        doctorForm.addDoctorToList();
                         // Show the modal when the save button is clicked
                         showDialog(
                           context: context,
@@ -196,7 +178,7 @@ class AddDoctorsForm extends StatelessWidget {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (_) =>
-                                                  const DoctorsListScreen()));
+                                                  DoctorsListScreen()));
                                     },
                                     child: const Text('Done'),
                                   ),

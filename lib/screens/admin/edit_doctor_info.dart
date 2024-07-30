@@ -5,7 +5,6 @@ import 'package:meditap/providers/doctorform_provider.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/icons.dart';
 import 'package:meditap/utils/text_style.dart';
-import 'package:meditap/utils/validator.dart';
 import 'package:provider/provider.dart';
 
 class EditDoctorsForm extends StatelessWidget {
@@ -33,7 +32,6 @@ class EditDoctorsForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final doctorForm = Provider.of<DoctorFormProvider>(context);
-    final validator = Validator();
 
     // Initialize the form fields with the initial values if provided
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -88,7 +86,6 @@ class EditDoctorsForm extends StatelessWidget {
                     children: [
                       Flexible(
                         child: MyTextfield(
-                          validator: (value) => validator.validateName(value, 'First Name'),
                           hint: 'First Name',
                           label: 'First Name',
                           initialValue: doctorForm.firstName,
@@ -99,7 +96,6 @@ class EditDoctorsForm extends StatelessWidget {
                       const SizedBox(width: 20),
                       Flexible(
                         child: MyTextfield(
-                          validator: (value) => validator.validateName(value, 'Last Name'),
                           hint: 'Last Name',
                           label: 'Last Name',
                           initialValue: doctorForm.lastName,
@@ -111,7 +107,6 @@ class EditDoctorsForm extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   MyTextfield(
-                    validator: (value) => validator.validateName(value, 'Specialty'),
                     hint: 'Select Specialty',
                     label: 'Specialty',
                     hasDropdown: true,
@@ -129,7 +124,6 @@ class EditDoctorsForm extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   MyTextfield(
-                    validator: (value) => validator.validateName(value, 'Gender'),
                     hint: 'Select Gender',
                     label: 'Gender',
                     hasDropdown: true,
@@ -139,7 +133,6 @@ class EditDoctorsForm extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   MyTextfield(
-                    validator: (value) => validator.validateName(value, 'Bio'),
                     hint: 'Write a short bio for the doctor',
                     label: 'Bio',
                     maxLines: 4,
@@ -148,7 +141,6 @@ class EditDoctorsForm extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   MyTextfield(
-                    validator: (value) => validator.validatePhoneNumber(value),
                     hint: '+234',
                     label: 'Phone Number',
                     initialValue: doctorForm.phoneNumber,
@@ -156,7 +148,6 @@ class EditDoctorsForm extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   MyTextfield(
-                    validator: (value) => validator.validateEmail(value),
                     hint: 'sample@site.com',
                     label: 'Email Address',
                     initialValue: doctorForm.emailAddress,
@@ -164,7 +155,6 @@ class EditDoctorsForm extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   MyTextfield(
-                    validator: (value) => validator.validateName(value, 'Schedule'),
                     hint: 'Select Schedule',
                     label: 'Schedule',
                     title: 'Choose Available times',
@@ -189,7 +179,6 @@ class EditDoctorsForm extends StatelessWidget {
                     height: 44,
                     child: ElevatedButton(
                       onPressed: () {
-                        doctorForm.addOrUpdateDoctor();
                         Navigator.pop(context);
                       },
                       style: ElevatedButton.styleFrom(
