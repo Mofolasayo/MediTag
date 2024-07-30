@@ -10,13 +10,14 @@ class MyTextfield extends StatefulWidget {
   final bool isMultipleSelection;
   final String title;
   final String? initialValue;
-  final String? Function(String?)? validator;
   final TextInputType? keyType;
   final ValueChanged<String>? onChanged;
   final ValueChanged<List<String>>? onChangedMultiple;
+  final TextEditingController? controller;
 
   const MyTextfield({
-    super.key,
+    Key? key,
+    this.controller,
     required this.label,
     required this.hint,
     this.keyType,
@@ -28,8 +29,7 @@ class MyTextfield extends StatefulWidget {
     this.initialValue,
     this.onChanged,
     this.onChangedMultiple,
-    this.validator,
-  });
+  }) : super(key: key);
 
   @override
   _MyTextfieldState createState() => _MyTextfieldState();
@@ -93,7 +93,12 @@ class _MyTextfieldState extends State<MyTextfield> {
   Widget _buildTextFormField() {
     return TextFormField(
       controller: _controller,
-      validator: widget.validator,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'This Field is required';
+        }
+        return null;
+      },
       maxLines: widget.maxLines,
       keyboardType: widget.keyType,
       decoration: InputDecoration(

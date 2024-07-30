@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meditap/common_widgets/doctors_list_item.dart';
+import 'package:meditap/pages/filter_modal_page.dart';
 import 'package:meditap/providers/doctorform_provider.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/constants.dart';
@@ -15,14 +16,24 @@ class PatientDoctorsList extends StatefulWidget {
 }
 
 class _PatientDoctorsListState extends State<PatientDoctorsList> {
+  void showFilterModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => FilterModal(
+        sortAscending: false,
+        sortDescending: false,
+        selectedSpecialties: [],
+      ),
+    );
+  }
   TextEditingController controller = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     final doctorProvider =
         Provider.of<DoctorFormProvider>(context, listen: true);
-    doctorProvider.getDoctorsFromHive();
-
+    doctorProvider.getDoctors();
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -41,31 +52,32 @@ class _PatientDoctorsListState extends State<PatientDoctorsList> {
                             doctorProvider.searchDoctor(value);
                           },
                           decoration: InputDecoration(
-                            prefixIcon: Padding(
-                              padding: const EdgeInsets.only(left: 5.0),
-                              child: SvgPicture.string(MediTagIcons.searchIcon),
-                            ),
-                            prefixIconConstraints:
-                                BoxConstraints.tight(const Size(30, 30)),
-                            hintText: 'Search for Doctors or Specialty',
-                            hintStyle: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color: neutral500),
-                            border: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: neutral100,
-                                width: 0.1,
+                              prefixIcon: Padding(
+                                padding: const EdgeInsets.only(left: 5.0),
+                                child:
+                                    SvgPicture.string(MediTagIcons.searchIcon),
                               ),
-                            ),
-                          ),
+                              prefixIconConstraints:
+                                  BoxConstraints.tight(const Size(30, 30)),
+                              hintText: 'Search for Doctors or Specialty',
+                              hintStyle: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: neutral500),
+                              border: const OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: neutral100, width: 0.1))),
                           style: const TextStyle()),
                     ),
                     const Spacer(),
-                    SvgPicture.string(MediTagIcons.filterIcon)
+                    GestureDetector(
+                        onTap: () {
+                          showFilterModal(context);
+                        },
+                        child: SvgPicture.string(MediTagIcons.filterIcon))
                   ],
                 ),
-                doctorProvider.doctorList.isNotEmpty
+                doctorProvider.doctorList.length > 0
                     ? ListView.builder(
                         shrinkWrap: true,
                         physics: const ScrollPhysics(),

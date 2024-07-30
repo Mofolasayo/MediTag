@@ -6,18 +6,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/icons.dart';
 import 'package:meditap/utils/text_style.dart';
-import 'package:meditap/providers/doctor_provider.dart';
+import 'package:meditap/providers/doctorform_provider.dart';
 
 class DoctorInfo extends StatelessWidget {
-  final Doctor doctor;
-
-  const DoctorInfo({
-    super.key,
-    required this.doctor,
-  });
-
   @override
   Widget build(BuildContext context) {
+    final doctorForm = Provider.of<DoctorFormProvider>(context);
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -100,7 +94,7 @@ class DoctorInfo extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        '${doctor.firstname ?? ''} ${doctor.lastname ?? ''}',
+                        '${doctorForm.firstName ?? ''} ${doctorForm.lastName ?? ''}',
                         style: bodyLarge,
                       ),
                       const Icon(Icons.male_outlined,
@@ -116,7 +110,7 @@ class DoctorInfo extends StatelessWidget {
                       const Icon(Icons.male_outlined,
                           color: neutral500, size: 15),
                       Text(
-                        doctor.specialty ?? '',
+                        doctorForm.specialty ?? '',
                         style: bodySmall.copyWith(fontSize: 14),
                       ),
                     ],
@@ -129,7 +123,7 @@ class DoctorInfo extends StatelessWidget {
                     children: [
                       const Icon(Icons.phone, color: neutral500, size: 15),
                       Text(
-                        doctor.phoneNumber ?? '',
+                        doctorForm.phoneNumber ?? '',
                         style: bodySmall.copyWith(fontSize: 14),
                       ),
                     ],
@@ -142,7 +136,7 @@ class DoctorInfo extends StatelessWidget {
                     children: [
                       const Icon(Icons.mail, color: neutral500, size: 15),
                       Text(
-                        doctor.email ?? '',
+                        doctorForm.emailAddress ?? '',
                         style: bodySmall.copyWith(fontSize: 14),
                       ),
                     ],
@@ -175,7 +169,7 @@ class DoctorInfo extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      doctor.bio ?? '',
+                      doctorForm.bio ?? '',
                       style: bodyLarge.copyWith(
                           fontWeight: FontWeight.w500, fontSize: 14),
                     ),
@@ -207,8 +201,8 @@ class DoctorInfo extends StatelessWidget {
                   ),
                 ),
                 child: Column(
-                  children: doctor.schedule != null
-                      ? doctor.schedule!
+                  children: doctorForm.schedule != null
+                      ? doctorForm.schedule!
                           .map((time) => _buildAvailabilityRow(
                               time.split(': ')[0], time.split(': ')[1]))
                           .toList()

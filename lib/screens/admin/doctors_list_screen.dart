@@ -46,20 +46,12 @@ class _DoctorsListScreenState extends State<DoctorsListScreen> {
         centerTitle: false,
         leadingWidth: 75,
       ),
-      body: doctorProvider.doctorList.isNotEmpty
-          ? ListView.builder(
-              itemCount: doctorProvider.doctorList.length,
-              itemBuilder: (context, index) {
-                return DoctorsListItem(
-                    doctor: doctorProvider.doctorList[index]);
-              },
-            )
-          : Center(
-              child: Text(
-                'No Doctors Found',
-                style: f18_w400_n800,
-              ),
-            ),
+      body: ListView.builder(
+        itemCount: doctorProvider.doctorList.length,
+        itemBuilder: (context, index) {
+          return DoctorsListItem(doctor: doctorProvider.doctorList[index]);
+        },
+      ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 25),
         child: Row(
@@ -68,8 +60,8 @@ class _DoctorsListScreenState extends State<DoctorsListScreen> {
             Flexible(
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => const ScanPage()));
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => ScanPage()));
                 },
                 child: Container(
                   height: 44,
@@ -91,30 +83,32 @@ class _DoctorsListScreenState extends State<DoctorsListScreen> {
                 ),
               ),
             ),
-            const SizedBox(width: 12),
+            const SizedBox(
+              width: 15,
+            ),
             Flexible(
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => const AddDoctorsForm()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => AddDoctorsForm()));
                 },
                 child: Container(
                   height: 44,
                   decoration: BoxDecoration(
                     color: shade0,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: primary600),
+                    border: Border.all(
+                      color: primary500,
+                      width: 1,
+                    ),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Add a Doctor',
-                        style: f16_w600_p500.copyWith(
-                          color: primary600,
-                        ),
+                  child: Center(
+                    child: Text(
+                      'Add a Doctor',
+                      style: f16_w600_p500.copyWith(
+                        color: primary500,
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
