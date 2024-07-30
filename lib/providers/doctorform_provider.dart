@@ -136,6 +136,8 @@ class DoctorFormProvider with ChangeNotifier {
 
     doctor.addDoctor(doctor);
 
+    getDoctorsFromHive();
+
     notifyListeners();
   }
 }
