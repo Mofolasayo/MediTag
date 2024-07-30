@@ -164,7 +164,7 @@ class AddDoctorsForm extends StatelessWidget {
                     height: 44,
                     child: ElevatedButton(
                       onPressed: () {
-                        doctorForm.addOrUpdateDoctor();
+                        doctorForm.addDoctorToList();
                         // Show the modal when the save button is clicked
                         showDialog(
                           context: context,

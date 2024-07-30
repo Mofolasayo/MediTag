@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:meditap/models/doctor.dart';
 
 class DoctorFormProvider with ChangeNotifier {
+  String? id;
   String? firstName;
   String? lastName;
   String? specialty;
@@ -28,6 +29,7 @@ class DoctorFormProvider with ChangeNotifier {
     String? emailAddress,
     List<String>? schedule,
   ) {
+    this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.specialty = specialty;
@@ -80,13 +82,20 @@ class DoctorFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
-    Future<void> getDoctorsFromHive() async {
+  Future<void> getDoctors() async {
     var doctorBox = await Hive.openBox<Doctor>('docBox');
-    doctorList = doctorBox.values.map((item) => item).toList();
+    doctorList = doctorBox.values.toList();
+  }
+
+  Future<void> getDoctorsFromHive() async {
+    var doctorBox = await Hive.openBox<Doctor>('docBox');
+    doctorList = doctorBox.values.toList();
+
+    print("Doctors Retrieved: ${doctorList.length}");
     notifyListeners();
   }
 
-  searchDoctor(String searchValue) {
+  void searchDoctor(String searchValue) {
     if (searchValue != '') {
       doctorList = doctorList.where((item) {
         return item.firstname.toLowerCase() +
@@ -96,14 +105,12 @@ class DoctorFormProvider with ChangeNotifier {
             item.specialty.toLowerCase() == searchValue.toLowerCase();
       }).toList();
     } else {
-      return doctorList;
+      getDoctorsFromHive();
     }
     notifyListeners();
   }
 
-  Future<void> addOrUpdateDoctor() async {
-    var doctorBox = await Hive.openBox<Doctor>('docBox');
-
+  void addDoctorToList() {
     Doctor doctor = Doctor(
       firstname: firstName ?? '',
       lastname: lastName ?? '',
@@ -115,20 +122,9 @@ class DoctorFormProvider with ChangeNotifier {
       specialty: specialty ?? '',
     );
 
-    try {
-      var existingDoctor = doctorBox.values.firstWhere(
-        (doc) => doc.email == doctor.email,
-      );
-      var key =
-          doctorBox.keyAt(doctorBox.values.toList().indexOf(existingDoctor));
-      doctorBox.put(key, doctor);
-    } catch (e) {
-      // If the doctor doesn't exist, add a new entry
-      doctorBox.add(doctor);
-    }
+    doctor.addDoctor(doctor);
 
-    // Update the local list and notify listeners
-    await getDoctorsFromHive();
+    notifyListeners();
   }
 
   Future<void> deleteDoctor(Doctor doctor) async {
@@ -136,6 +132,28 @@ class DoctorFormProvider with ChangeNotifier {
     var key = doctorBox.keyAt(doctorBox.values.toList().indexOf(doctor));
     await doctorBox.delete(key);
     // Update the local list and notify listeners
+    await getDoctorsFromHive();
+  }
+
+  Future<void> updateDoctorInHive(Doctor updatedDoctor) async {
+    var doctorBox = await Hive.openBox<Doctor>('docBox');
+
+    // Find the existing doctor's key
+    var existingDoctor = doctorBox.values.firstWhere(
+      (doc) => doc.email == updatedDoctor.email,
+    );
+
+    print(existingDoctor.email);
+    if (existingDoctor != null) {
+      var key =
+          doctorBox.keyAt(doctorBox.values.toList().indexOf(existingDoctor));
+      await doctorBox.put(existingDoctor.id, updatedDoctor);
+    } else {
+      // If the doctor does not exist, you might want to handle this case
+      // For example, you could add the updatedDoctor as a new entry
+      await doctorBox.add(updatedDoctor);
+    }
+
     await getDoctorsFromHive();
   }
 }

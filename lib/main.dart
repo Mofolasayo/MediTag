@@ -117,7 +117,6 @@ class MyApp extends StatelessWidget {
         '/nfc-scan': (context) => const NfcScan(),
         '/patient-doctors-list': (context) => const PatientDoctorsList(),
         '/doctors-list': (context) => const DoctorsListScreen(),
-        '/edit-doctor-info': (context) => const EditDoctorsForm(),
       },
     );
   }

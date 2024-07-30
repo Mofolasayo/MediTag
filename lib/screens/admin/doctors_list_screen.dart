@@ -9,14 +9,26 @@ import 'package:meditap/utils/icons.dart';
 import 'package:meditap/utils/text_style.dart';
 import 'package:provider/provider.dart';
 
-class DoctorsListScreen extends StatelessWidget {
+class DoctorsListScreen extends StatefulWidget {
   const DoctorsListScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  _DoctorsListScreenState createState() => _DoctorsListScreenState();
+}
+
+class _DoctorsListScreenState extends State<DoctorsListScreen> {
+  @override
+  void initState() {
+    super.initState();
     final doctorProvider =
-        Provider.of<DoctorFormProvider>(context, listen: true);
-    doctorProvider.getDoctors();
+        Provider.of<DoctorFormProvider>(context, listen: false);
+    doctorProvider.getDoctorsFromHive();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final doctorProvider = Provider.of<DoctorFormProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
@@ -34,16 +46,20 @@ class DoctorsListScreen extends StatelessWidget {
         centerTitle: false,
         leadingWidth: 75,
       ),
-      body: ListView.builder(
-        itemCount: doctorProvider.doctorList.length,
-        itemBuilder: (context, index) {
-          return DoctorsListItem(
-            doctor: doctorProvider.doctorList[index],
-            onDelete: () =>
-                doctorProvider.deleteDoctor(doctorProvider.doctorList[index]),
-          );
-        },
-      ),
+      body: doctorProvider.doctorList.isNotEmpty
+          ? ListView.builder(
+              itemCount: doctorProvider.doctorList.length,
+              itemBuilder: (context, index) {
+                return DoctorsListItem(
+                    doctor: doctorProvider.doctorList[index]);
+              },
+            )
+          : Center(
+              child: Text(
+                'No Doctors Found',
+                style: f18_w400_n800,
+              ),
+            ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 25),
         child: Row(

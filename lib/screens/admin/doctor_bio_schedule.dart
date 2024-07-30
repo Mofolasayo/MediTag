@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meditap/models/doctor.dart';
+import 'package:meditap/screens/admin/edit_doctor_info.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meditap/utils/colors.dart';
@@ -52,8 +53,8 @@ class DoctorInfo extends StatelessWidget {
                           children: [
                             IconButton(
                               onPressed: () {
-                                Navigator.pushNamed(
-                                    context, '/edit-doctor-info');
+                                 Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => EditDoctorsForm(doctor: doctor)));
                               },
                               icon: SvgPicture.string(MediTagIcons.editIcon),
                             ),
