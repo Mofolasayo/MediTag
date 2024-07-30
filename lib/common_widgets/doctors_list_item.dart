@@ -12,6 +12,7 @@ class DoctorsListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10),
       decoration: const BoxDecoration(
         color: shade0,
         border: Border.symmetric(
@@ -29,7 +30,9 @@ class DoctorsListItem extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                doctor.firstname,
+                doctor.firstname != '' || doctor.firstname.isNotEmpty
+                    ? doctor.firstname[0].toUpperCase()
+                    : '',
                 style: const TextStyle(
                   fontSize: 18,
                   color: primary600,
