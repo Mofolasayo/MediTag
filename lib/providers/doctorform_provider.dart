@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:meditap/models/doctor.dart';
 
 class DoctorFormProvider with ChangeNotifier {
   String? firstName;
@@ -9,6 +12,8 @@ class DoctorFormProvider with ChangeNotifier {
   String? phoneNumber;
   String? emailAddress;
   List<String>? schedule;
+
+  List<Doctor> doctorList = [];
 
   void setInitialValues(
     String? firstName,
@@ -69,5 +74,25 @@ class DoctorFormProvider with ChangeNotifier {
   void updateSchedule(List<String> values) {
     schedule = values;
     notifyListeners();
+  }
+
+  void addDoctorToList() {
+    Doctor doctor = Doctor(
+      firstname: firstName,
+      lastname: lastName,
+      bio: bio,
+      email: emailAddress,
+      gender: gender,
+      phoneNumber: phoneNumber,
+      schedule: schedule,
+      specialty: specialty,
+    );
+
+    notifyListeners();
+    // final theDoctor = Doctor.fromMap(doctor);
+    doctorList.add(doctor);
+    print(doctor);
+    notifyListeners();
+    print(doctorList);
   }
 }

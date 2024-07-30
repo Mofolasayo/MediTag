@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meditap/providers/doctorform_provider.dart';
+import 'package:meditap/providers/nfc_provider.dart';
 import 'package:meditap/screens/admin/doctor_bio_schedule.dart';
 import 'package:meditap/screens/admin/doctors_list_screen.dart';
 import 'package:meditap/screens/admin/edit_doctor_info.dart';
@@ -17,12 +18,15 @@ void main() async {
   await Hive.initFlutter();
   // Register Hive Adapter
   Hive.registerAdapter(DoctorAdapter());
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => DoctorFormProvider(),
-      child: MyApp(),
-    ),
-  );
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (context) => DoctorFormProvider(),
+      ),
+      ChangeNotifierProvider(create: (_) => NfcProvider())
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -59,7 +63,8 @@ class MyApp extends StatelessWidget {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             backgroundColor: primary500,
           ),
         ),
@@ -78,7 +83,8 @@ class MyApp extends StatelessWidget {
           ),
           labelStyle: const TextStyle(color: neutral400),
           hintStyle: const TextStyle(color: neutral400),
-          contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
         ),
         checkboxTheme: CheckboxThemeData(
           shape: RoundedRectangleBorder(
@@ -86,7 +92,9 @@ class MyApp extends StatelessWidget {
           ),
           side: WidgetStateBorderSide.resolveWith(
             (states) => BorderSide(
-              color: states.contains(WidgetState.selected) ? primary500 : Colors.grey,
+              color: states.contains(WidgetState.selected)
+                  ? primary500
+                  : Colors.grey,
               width: 1,
             ),
           ),
@@ -94,7 +102,9 @@ class MyApp extends StatelessWidget {
             (states) => primary500,
           ),
           fillColor: WidgetStateProperty.resolveWith(
-            (states) => states.contains(WidgetState.selected) ? primary100 : Colors.transparent,
+            (states) => states.contains(WidgetState.selected)
+                ? primary100
+                : Colors.transparent,
           ),
         ),
       ),

@@ -29,7 +29,7 @@ class DoctorsListItem extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                doctor.firstname.isNotEmpty ? doctor.firstname[0] : '',
+                doctor.firstname![0],
                 style: const TextStyle(
                   fontSize: 18,
                   color: primary600,
@@ -39,6 +39,7 @@ class DoctorsListItem extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
@@ -48,7 +49,7 @@ class DoctorsListItem extends StatelessWidget {
                 ),
               ),
               Text(
-                doctor.specialty,
+                doctor.specialty!,
                 style: f14_w400_n500.copyWith(color: neutral600),
               ),
             ],
