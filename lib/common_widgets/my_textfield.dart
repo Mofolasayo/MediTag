@@ -10,6 +10,7 @@ class MyTextfield extends StatefulWidget {
   final bool isMultipleSelection;
   final String title;
   final String? initialValue;
+  final TextInputType? keyType;
   final ValueChanged<String>? onChanged;
   final ValueChanged<List<String>>? onChangedMultiple;
 
@@ -17,6 +18,7 @@ class MyTextfield extends StatefulWidget {
     Key? key,
     required this.label,
     required this.hint,
+    this.keyType,
     this.maxLines,
     this.hasDropdown = false,
     this.options,
@@ -90,6 +92,7 @@ class _MyTextfieldState extends State<MyTextfield> {
     return TextFormField(
       controller: _controller,
       maxLines: widget.maxLines,
+      keyboardType: widget.keyType,
       decoration: InputDecoration(
         hintText: widget.hint,
         hintStyle: f14_w400_n500,

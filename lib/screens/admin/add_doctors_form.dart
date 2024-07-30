@@ -32,10 +32,10 @@ class AddDoctorsForm extends StatelessWidget {
               'Add a Doctor',
               style: f18_w400_n800,
             ),
-            const Text(
-              'Preview',
-              style: TextStyle(color: primary500),
-            ),
+            // const Text(
+            //   'Preview',
+            //   style: TextStyle(color: primary500),
+            // ),
           ],
         ),
         centerTitle: false,
@@ -56,6 +56,7 @@ class AddDoctorsForm extends StatelessWidget {
                         child: MyTextfield(
                           hint: 'First Name',
                           label: 'First Name',
+                          keyType: TextInputType.name,
                           onChanged: (value) =>
                               doctorForm.updateFirstName(value),
                         ),
@@ -65,6 +66,7 @@ class AddDoctorsForm extends StatelessWidget {
                         child: MyTextfield(
                           hint: 'Last Name',
                           label: 'Last Name',
+                          keyType: TextInputType.name,
                           onChanged: (value) =>
                               doctorForm.updateLastName(value),
                         ),
@@ -76,6 +78,7 @@ class AddDoctorsForm extends StatelessWidget {
                     hint: 'Select Specialty',
                     label: 'Specialty',
                     hasDropdown: true,
+                    keyType: TextInputType.text,
                     title: "Select doctor's specialty",
                     options: const [
                       'Anesthesiologist',
@@ -91,6 +94,7 @@ class AddDoctorsForm extends StatelessWidget {
                   MyTextfield(
                     hint: 'Select Gender',
                     label: 'Gender',
+                    keyType: TextInputType.text,
                     hasDropdown: true,
                     options: const ['Male', 'Female'],
                     onChanged: (value) => doctorForm.updateGender(value),
@@ -99,6 +103,7 @@ class AddDoctorsForm extends StatelessWidget {
                   MyTextfield(
                     hint: 'Write a short bio for the doctor',
                     label: 'Bio',
+                    keyType: TextInputType.text,
                     maxLines: 4,
                     onChanged: (value) => doctorForm.updateBio(value),
                   ),
@@ -106,12 +111,14 @@ class AddDoctorsForm extends StatelessWidget {
                   MyTextfield(
                     hint: '+234',
                     label: 'Phone Number',
+                    keyType: TextInputType.phone,
                     onChanged: (value) => doctorForm.updatePhoneNumber(value),
                   ),
                   const SizedBox(height: 16),
                   MyTextfield(
                     hint: 'sample@site.com',
                     label: 'Email Address',
+                    keyType: TextInputType.emailAddress,
                     onChanged: (value) => doctorForm.updateEmailAddress(value),
                   ),
                   const SizedBox(height: 16),

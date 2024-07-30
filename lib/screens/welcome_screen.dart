@@ -70,7 +70,7 @@ class WelcomeScreen extends StatelessWidget {
                             GestureDetector(
                               onTap: () {
                                 Navigator.of(context)
-                                    .pushReplacementNamed('/doctors-list');
+                                    .pushNamed('/patient-doctors-list');
                               },
                               child: Container(
                                 decoration: BoxDecoration(
