@@ -3,14 +3,14 @@ import 'package:uuid/uuid.dart';
 class Doctor {
   final String name;
   final String id;
-  final String speciality;
+  final String specialty;
   final String phoneNumber;
-  final String department;
+  final String email;
 
   Doctor(
       {required this.name,
-      required this.speciality,
+      required this.specialty,
       required this.phoneNumber,
-      required this.department})
+      required this.email})
       : id = Uuid().v4();
 }

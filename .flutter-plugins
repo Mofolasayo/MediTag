@@ -1,8 +1,8 @@
 # This is a generated file; do not edit or check into version control.
-flutter_native_splash=/Users/mofolasayoosikoya/.pub-cache/hosted/pub.dev/flutter_native_splash-2.4.1/
-nfc_manager=/Users/mofolasayoosikoya/.pub-cache/hosted/pub.dev/nfc_manager-3.5.0/
-path_provider=/Users/mofolasayoosikoya/.pub-cache/hosted/pub.dev/path_provider-2.1.3/
-path_provider_android=/Users/mofolasayoosikoya/.pub-cache/hosted/pub.dev/path_provider_android-2.2.8/
-path_provider_foundation=/Users/mofolasayoosikoya/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.0/
-path_provider_linux=/Users/mofolasayoosikoya/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
-path_provider_windows=/Users/mofolasayoosikoya/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
+flutter_native_splash=/Users/mac/.pub-cache/hosted/pub.dev/flutter_native_splash-2.4.1/
+nfc_manager=/Users/mac/.pub-cache/hosted/pub.dev/nfc_manager-3.5.0/
+path_provider=/Users/mac/.pub-cache/hosted/pub.dev/path_provider-2.1.3/
+path_provider_android=/Users/mac/.pub-cache/hosted/pub.dev/path_provider_android-2.2.8/
+path_provider_foundation=/Users/mac/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.0/
+path_provider_linux=/Users/mac/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+path_provider_windows=/Users/mac/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
