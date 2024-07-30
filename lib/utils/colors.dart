@@ -8,10 +8,12 @@ const Color primary50 = Color.fromRGBO(242, 249, 254, 1);
 
 const Color neutral900 = Color.fromRGBO(29, 30, 30, 1);
 const Color neutral800 = Color.fromRGBO(58, 59, 61, 1);
+const Color neutral400 = Color.fromRGBO(189, 191, 193, 1);
 const Color neutral500 = Color.fromRGBO(145, 148, 151, 1);
 const Color neutral200 = Color.fromRGBO(222, 223, 224, 1);
 const Color neutral100 = Color.fromRGBO(239, 239, 239, 1);
 const Color neutral50 = Color.fromRGBO(249, 250, 250, 1);
+const Color neutral600 = Color.fromRGBO(115, 118, 122, 1);
 
 const Color shade0 = Color.fromRGBO(255, 253, 253, 1);
 
