@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:meditap/utils/colors.dart';
+import 'package:meditap/utils/text_style.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditap/screens/admin/how_to_use.dart';
@@ -6,6 +8,7 @@ import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/dotted_box.dart';
 import 'package:meditap/utils/icons.dart';
 import 'package:meditap/screens/scan_screen.dart';
+
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
