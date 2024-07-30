@@ -7,23 +7,23 @@ part 'doctor.g.dart';
 @HiveType(typeId: 1)
 class Doctor {
   @HiveField(0)
-  final String? id;
+  final String id;
   @HiveField(1)
-  final String? firstname;
+  final String firstname;
   @HiveField(2)
-  final String? lastname;
+  final String lastname;
   @HiveField(3)
-  final String? email;
+  final String email;
   @HiveField(4)
-  final String? gender;
+  final String gender;
   @HiveField(5)
-  final String? bio;
+  final String bio;
   @HiveField(6)
-  final String? specialty;
+  final String specialty;
   @HiveField(7)
-  final String? phoneNumber;
+  final String phoneNumber;
   @HiveField(8)
-  final List<String>? schedule;
+  final List<String> schedule;
 
   Doctor({
     required this.firstname,
@@ -63,8 +63,8 @@ class Doctor {
     };
   }
 
-  Future<void> AddDoctor(Doctor doctor) async {
-    var doctorBox = await Hive.openBox('doctoreBox');
+  Future<void> addDoctor(Doctor doctor) async {
+    var doctorBox = await Hive.openBox<Doctor>('docBox');
     await doctorBox.put(doctor.id, doctor);
 
     print('success');

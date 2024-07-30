@@ -155,6 +155,7 @@ class NfcProvider extends ChangeNotifier {
         String jsonString = utf8.decode(message.records.first.payload);
         readData = List<Map<String, dynamic>>.from(jsonDecode(jsonString));
         result = "Successfully read data";
+        print(result);
         _stopSession();
       } catch (e) {
         result = e.toString();

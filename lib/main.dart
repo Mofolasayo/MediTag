@@ -6,6 +6,8 @@ import 'package:meditap/screens/admin/doctors_list_screen.dart';
 import 'package:meditap/screens/admin/edit_doctor_info.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:meditap/models/doctor.dart';
+import 'package:meditap/screens/nfc_scan.dart';
+import 'package:meditap/screens/patient_doctor_list.dart';
 import 'package:meditap/screens/splash_screen.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/screens/admin/add_doctors_form.dart';
@@ -18,6 +20,7 @@ void main() async {
   await Hive.initFlutter();
   // Register Hive Adapter
   Hive.registerAdapter(DoctorAdapter());
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
@@ -112,6 +115,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/add-doctors-form': (context) => const AddDoctorsForm(),
         '/doctor-bio': (context) => DoctorInfo(),
+        '/nfc-scan': (context) => NfcScan(),
+        '/patient-doctors-list': (context) => PatientDoctorsList(),
         '/doctors-list': (context) => DoctorsListScreen(),
         '/edit-doctor-info': (context) => const EditDoctorsForm(),
       },

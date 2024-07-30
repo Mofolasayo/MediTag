@@ -1,6 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:meditap/models/doctor.dart';
 
 class DoctorFormProvider with ChangeNotifier {
@@ -12,6 +11,10 @@ class DoctorFormProvider with ChangeNotifier {
   String? phoneNumber;
   String? emailAddress;
   List<String>? schedule;
+
+  DoctorFormProvider() {
+    getDoctorsFromHive();
+  }
 
   List<Doctor> doctorList = [];
 
@@ -33,6 +36,7 @@ class DoctorFormProvider with ChangeNotifier {
     this.phoneNumber = phoneNumber;
     this.emailAddress = emailAddress;
     this.schedule = schedule;
+
     notifyListeners();
   }
 
@@ -76,23 +80,32 @@ class DoctorFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void addDoctorToList() {
-    Doctor doctor = Doctor(
-      firstname: firstName,
-      lastname: lastName,
-      bio: bio,
-      email: emailAddress,
-      gender: gender,
-      phoneNumber: phoneNumber,
-      schedule: schedule,
-      specialty: specialty,
-    );
+  getDoctorsFromHive() async {
+    var doctorBox = await Hive.openBox<Doctor>('docBox');
+    doctorList = doctorBox.values.map((item) => item).toList();
+
+    print(doctorList);
 
     notifyListeners();
-    // final theDoctor = Doctor.fromMap(doctor);
-    doctorList.add(doctor);
-    print(doctor);
+  }
+
+  void addDoctorToList() {
+    Doctor doctor = Doctor(
+      firstname: firstName ?? '',
+      lastname: lastName ?? '',
+      bio: bio ?? '',
+      email: emailAddress ?? '',
+      gender: gender ?? '',
+      phoneNumber: phoneNumber ?? '',
+      schedule: schedule ?? [],
+      specialty: specialty ?? '',
+    );
+
+    // notifyListeners();
+    // // final theDoctor = Doctor.fromMap(doctor);
+    // // Add doctor to Hives
+    doctor.addDoctor(doctor);
+    // getDoctorsFromHive();
     notifyListeners();
-    print(doctorList);
   }
 }

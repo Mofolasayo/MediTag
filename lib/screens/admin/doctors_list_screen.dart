@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meditap/common_widgets/doctors_list_item.dart';
-import 'package:meditap/models/doctor.dart';
 import 'package:meditap/providers/doctorform_provider.dart';
 import 'package:meditap/screens/admin/add_doctors_form.dart';
 import 'package:meditap/screens/scan_screen.dart';
@@ -11,64 +10,13 @@ import 'package:meditap/utils/text_style.dart';
 import 'package:provider/provider.dart';
 
 class DoctorsListScreen extends StatelessWidget {
-  final List<Doctor> doctors = [
-    Doctor(
-      firstname: 'John',
-      lastname: 'Doe',
-      email: 'john.doe@example.com',
-      gender: 'Male',
-      bio: 'Experienced cardiologist with over 10 years of practice.',
-      specialty: 'Cardiology',
-      phoneNumber: '123-456-7890',
-      schedule: ['Monday 9am-5pm', 'Wednesday 9am-5pm', 'Friday 9am-5pm'],
-    ),
-    Doctor(
-      firstname: 'Jane',
-      lastname: 'Smith',
-      email: 'jane.smith@example.com',
-      gender: 'Female',
-      bio: 'Expert in dermatology, providing care for all skin types.',
-      specialty: 'Dermatology',
-      phoneNumber: '098-765-4321',
-      schedule: ['Tuesday 10am-6pm', 'Thursday 10am-6pm'],
-    ),
-    Doctor(
-      firstname: 'Alice',
-      lastname: 'Johnson',
-      email: 'alice.johnson@example.com',
-      gender: 'Female',
-      bio: 'Pediatrician with a focus on childhood immunizations.',
-      specialty: 'Pediatrics',
-      phoneNumber: '555-123-4567',
-      schedule: ['Monday 8am-4pm', 'Wednesday 8am-4pm', 'Friday 8am-4pm'],
-    ),
-    Doctor(
-      firstname: 'Robert',
-      lastname: 'Williams',
-      email: 'robert.williams@example.com',
-      gender: 'Male',
-      bio: 'Specialist in orthopedic surgery and sports medicine.',
-      specialty: 'Orthopedics',
-      phoneNumber: '444-555-6666',
-      schedule: ['Monday 9am-5pm', 'Tuesday 9am-5pm', 'Thursday 9am-5pm'],
-    ),
-    Doctor(
-      firstname: 'Maria',
-      lastname: 'Brown',
-      email: 'maria.brown@example.com',
-      gender: 'Female',
-      bio: 'Renowned neurologist with extensive research in brain disorders.',
-      specialty: 'Neurology',
-      phoneNumber: '333-444-5555',
-      schedule: ['Wednesday 8am-4pm', 'Thursday 8am-4pm', 'Friday 8am-4pm'],
-    ),
-  ];
-  DoctorsListScreen({super.key});
+  const DoctorsListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final doctorProvider =
         Provider.of<DoctorFormProvider>(context, listen: true);
+    doctorProvider.getDoctorsFromHive();
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
