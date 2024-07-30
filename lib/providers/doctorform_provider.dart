@@ -80,12 +80,30 @@ class DoctorFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  getDoctors() async {
+    var doctorBox = await Hive.openBox<Doctor>('docBox');
+    doctorList = doctorBox.values.map((item) => item).toList();
+  }
+
   getDoctorsFromHive() async {
     var doctorBox = await Hive.openBox<Doctor>('docBox');
     doctorList = doctorBox.values.map((item) => item).toList();
 
-    print(doctorList);
+    notifyListeners();
+  }
 
+  searchDoctor(String searchValue) {
+    if (searchValue != '') {
+      doctorList = doctorList.where((item) {
+        return item.firstname.toLowerCase() +
+                    ' ' +
+                    item.lastname.toLowerCase() ==
+                searchValue.toLowerCase() ||
+            item.specialty.toLowerCase() == searchValue.toLowerCase();
+      }).toList();
+    } else {
+      return doctorList;
+    }
     notifyListeners();
   }
 
@@ -101,11 +119,8 @@ class DoctorFormProvider with ChangeNotifier {
       specialty: specialty ?? '',
     );
 
-    // notifyListeners();
-    // // final theDoctor = Doctor.fromMap(doctor);
-    // // Add doctor to Hives
     doctor.addDoctor(doctor);
-    // getDoctorsFromHive();
+
     notifyListeners();
   }
 }
