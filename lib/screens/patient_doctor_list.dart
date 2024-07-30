@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meditap/common_widgets/doctors_list_item.dart';
+import 'package:meditap/pages/filter_modal_page.dart';
 import 'package:meditap/providers/doctorform_provider.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/constants.dart';
@@ -15,6 +16,18 @@ class PatientDoctorsList extends StatefulWidget {
 }
 
 class _PatientDoctorsListState extends State<PatientDoctorsList> {
+  void showFilterModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => FilterModal(
+        sortAscending: false,
+        sortDescending: false,
+        selectedSpecialties: [],
+      ),
+    );
+  }
   TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -57,7 +70,11 @@ class _PatientDoctorsListState extends State<PatientDoctorsList> {
                           style: const TextStyle()),
                     ),
                     const Spacer(),
-                    SvgPicture.string(MediTagIcons.filterIcon)
+                    GestureDetector(
+                        onTap: () {
+                          showFilterModal(context);
+                        },
+                        child: SvgPicture.string(MediTagIcons.filterIcon))
                   ],
                 ),
                 doctorProvider.doctorList.length > 0
