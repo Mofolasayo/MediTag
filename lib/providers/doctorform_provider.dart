@@ -80,9 +80,24 @@ class DoctorFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getDoctorsFromHive() async {
+    Future<void> getDoctorsFromHive() async {
     var doctorBox = await Hive.openBox<Doctor>('docBox');
     doctorList = doctorBox.values.map((item) => item).toList();
+    notifyListeners();
+  }
+
+  searchDoctor(String searchValue) {
+    if (searchValue != '') {
+      doctorList = doctorList.where((item) {
+        return item.firstname.toLowerCase() +
+                    ' ' +
+                    item.lastname.toLowerCase() ==
+                searchValue.toLowerCase() ||
+            item.specialty.toLowerCase() == searchValue.toLowerCase();
+      }).toList();
+    } else {
+      return doctorList;
+    }
     notifyListeners();
   }
 

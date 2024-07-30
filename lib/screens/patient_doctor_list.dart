@@ -37,6 +37,9 @@ class _PatientDoctorsListState extends State<PatientDoctorsList> {
                       height: 48,
                       child: TextField(
                           controller: controller,
+                          onChanged: (value) {
+                            doctorProvider.searchDoctor(value);
+                          },
                           decoration: InputDecoration(
                             prefixIcon: Padding(
                               padding: const EdgeInsets.only(left: 5.0),

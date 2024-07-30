@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meditap/screens/admin/add_doctors_form.dart';
+import 'package:meditap/screens/admin/doctors_list_screen.dart';
 import 'package:meditap/utils/colors.dart';
-import 'package:meditap/utils/text_style.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditap/screens/admin/how_to_use.dart';
-import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/dotted_box.dart';
 import 'package:meditap/utils/icons.dart';
 import 'package:meditap/screens/scan_screen.dart';
@@ -109,11 +107,18 @@ class Dashboard extends StatelessWidget {
           ),
           Row(
             children: [
-              const TagOptions(
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const DoctorsListScreen()));
+                },
+                child: const TagOptions(
                   option: '0',
                   firstLine: 'Doctors',
                   secondLine: '',
-                  icon: MediTagIcons.doctorIcon),
+                  icon: MediTagIcons.doctorIcon,
+                ),
+              ),
               const Spacer(),
               GestureDetector(
                 onTap: () {
