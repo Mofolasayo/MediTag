@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meditap/screens/admin/doctors_list_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meditap/common_widgets/my_textfield.dart';
@@ -138,6 +139,7 @@ class AddDoctorsForm extends StatelessWidget {
                     height: 44,
                     child: ElevatedButton(
                       onPressed: () {
+                        doctorForm.addDoctorToList();
                         // Show the modal when the save button is clicked
                         showDialog(
                           context: context,
@@ -166,7 +168,10 @@ class AddDoctorsForm extends StatelessWidget {
                                   const SizedBox(height: 20),
                                   ElevatedButton(
                                     onPressed: () {
-                                      Navigator.of(context).pop();
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (_) =>
+                                                  DoctorsListScreen()));
                                     },
                                     child: const Text('Done'),
                                   ),

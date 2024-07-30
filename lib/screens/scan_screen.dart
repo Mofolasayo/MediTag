@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:meditap/providers/nfc_provider.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/icons.dart';
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:provider/provider.dart';
 
 class ScanPage extends StatefulWidget {
   const ScanPage({super.key});
@@ -12,6 +14,16 @@ class ScanPage extends StatefulWidget {
 }
 
 class _ScanPageState extends State<ScanPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final nfcprovider = Provider.of<NfcProvider>(context, listen: false);
+      nfcprovider.ndefWrite(context);
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

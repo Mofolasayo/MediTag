@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meditap/common_widgets/doctors_list_item.dart';
 import 'package:meditap/models/doctor.dart';
+import 'package:meditap/providers/doctorform_provider.dart';
+import 'package:meditap/screens/admin/add_doctors_form.dart';
+import 'package:meditap/screens/scan_screen.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/icons.dart';
 import 'package:meditap/utils/text_style.dart';
+import 'package:provider/provider.dart';
 
 class DoctorsListScreen extends StatelessWidget {
   final List<Doctor> doctors = [
@@ -63,6 +67,8 @@ class DoctorsListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final doctorProvider =
+        Provider.of<DoctorFormProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
@@ -81,9 +87,9 @@ class DoctorsListScreen extends StatelessWidget {
         leadingWidth: 75,
       ),
       body: ListView.builder(
-        itemCount: doctors.length,
+        itemCount: doctorProvider.doctorList.length,
         itemBuilder: (context, index) {
-          return DoctorsListItem(doctor: doctors[index]);
+          return DoctorsListItem(doctor: doctorProvider.doctorList[index]);
         },
       ),
       bottomNavigationBar: Padding(
@@ -92,22 +98,28 @@ class DoctorsListScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Flexible(
-              child: Container(
-                height: 44,
-                decoration: BoxDecoration(
-                  color: primary500,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Write to NFC',
-                      style: f16_w600_p500.copyWith(
-                        color: primary50,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => ScanPage()));
+                },
+                child: Container(
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: primary500,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Write to NFC',
+                        style: f16_w600_p500.copyWith(
+                          color: primary50,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -115,26 +127,29 @@ class DoctorsListScreen extends StatelessWidget {
               width: 15,
             ),
             Flexible(
-              child: Container(
-                height: 44,
-                decoration: BoxDecoration(
-                  color: shade0,
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: primary500,
-                    width: 1,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => AddDoctorsForm()));
+                },
+                child: Container(
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: shade0,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: primary500,
+                      width: 1,
+                    ),
                   ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
+                  child: Center(
+                    child: Text(
                       'Add a Doctor',
                       style: f16_w600_p500.copyWith(
                         color: primary500,
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
