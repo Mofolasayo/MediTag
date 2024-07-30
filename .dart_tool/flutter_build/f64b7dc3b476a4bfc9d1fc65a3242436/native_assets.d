@@ -1,1 +1,0 @@
- C:\\Users\\admin\\Documents\\HNG\\MediTag\\.dart_tool\\flutter_build\\f64b7dc3b476a4bfc9d1fc65a3242436\\native_assets.yaml: 

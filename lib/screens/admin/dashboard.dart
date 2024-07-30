@@ -30,18 +30,29 @@ class Dashboard extends StatelessWidget {
                         width: 390,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SvgPicture.string(MediTagIcons.tagAdded),
-                            //SizedBox(height: 10),
                             const Text("Tag Added Successfully"),
-                            //SizedBox(height: 16),
-
-                            const Text(
-                              "Your Tag has been added to the MediTag app",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: neutral500,
-                                  fontWeight: FontWeight.w400),
+                            const Column(
+                              children: [
+                                Text(
+                                  "Your Information has been added to the Tag",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: neutral500,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                Center(
+                                  child: Text(
+                                    "successfully",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: neutral500,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ],
                             ),
                             SizedBox(
                               height: 44,
@@ -76,8 +87,8 @@ class Dashboard extends StatelessWidget {
               const Spacer(),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => ScanPage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ScanPage()));
                 },
                 child: const TagOptions(
                   icon: MediTagIcons.readATag,
@@ -91,17 +102,27 @@ class Dashboard extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const HowToUse()));
-            },
-            child: const TagOptions(
-                option: 'How to use',
-                firstLine: 'Read through our guide',
-                secondLine: 'to learn how to use',
-                icon: MediTagIcons.howToUse),
-          )
+          Row(
+            children: [
+              const TagOptions(
+                  option: '0',
+                  firstLine: 'Doctors',
+                  secondLine: '',
+                  icon: MediTagIcons.doctorIcon),
+              const Spacer(),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const HowToUse()));
+                },
+                child: const TagOptions(
+                    option: 'How to use',
+                    firstLine: 'Read through our guide',
+                    secondLine: 'to learn how to use',
+                    icon: MediTagIcons.howToUse),
+              )
+            ],
+          ),
         ],
       ),
     );

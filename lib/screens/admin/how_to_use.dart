@@ -49,7 +49,7 @@ class HowToUse extends StatelessWidget {
                         spreadRadius: 0,
                         offset: Offset(0, 4))
                   ], color: shade0, borderRadius: BorderRadius.circular(15)),
-                  height: 450,
+                  height: 490,
                   width: Constants.deviceWidth(context) * 0.9,
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
@@ -109,16 +109,18 @@ class StepTiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(5),
       decoration: const BoxDecoration(
           border: Border(bottom: BorderSide(color: neutral100, width: 1))),
       child: ListTile(
         title: Text(
           title,
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
         ),
         subtitle: Text(
           subtitle,
           style: const TextStyle(
-              color: neutral900, fontSize: 14, fontWeight: FontWeight.w400),
+              color: neutral900, fontSize: 14, fontWeight: FontWeight.w300),
         ),
         leading: SvgPicture.string(icon),
       ),
