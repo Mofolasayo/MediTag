@@ -18,7 +18,7 @@ class Doctor {
   @HiveField(5)
   final String bio;
   @HiveField(6)
-  final String speciality;
+  final String specialty;
   @HiveField(7)
   final String phoneNumber;
   @HiveField(8)
@@ -30,7 +30,7 @@ class Doctor {
     required this.email,
     required this.gender,
     required this.bio,
-    required this.speciality,
+    required this.specialty,
     required this.phoneNumber,
     required this.schedule,
   }) : id = const Uuid().v4();

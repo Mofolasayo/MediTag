@@ -22,7 +22,7 @@ class DoctorAdapter extends TypeAdapter<Doctor> {
       email: fields[3] as String,
       gender: fields[4] as String,
       bio: fields[5] as String,
-      speciality: fields[6] as String,
+      specialty: fields[6] as String,
       phoneNumber: fields[7] as String,
       schedule: (fields[8] as List).cast<String>(),
     );
@@ -45,7 +45,7 @@ class DoctorAdapter extends TypeAdapter<Doctor> {
       ..writeByte(5)
       ..write(obj.bio)
       ..writeByte(6)
-      ..write(obj.speciality)
+      ..write(obj.specialty)
       ..writeByte(7)
       ..write(obj.phoneNumber)
       ..writeByte(8)
