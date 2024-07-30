@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:meditap/models/doctor.dart';
 
 class DoctorFormProvider with ChangeNotifier {
+  String? id;
   String? firstName;
   String? lastName;
   String? specialty;
@@ -28,6 +29,7 @@ class DoctorFormProvider with ChangeNotifier {
     String? emailAddress,
     List<String>? schedule,
   ) {
+    this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.specialty = specialty;
@@ -80,47 +82,88 @@ class DoctorFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  getDoctors() async {
+  Future<void> getDoctors() async {
     var doctorBox = await Hive.openBox<Doctor>('docBox');
-    doctorList = doctorBox.values.map((item) => item).toList();
+    doctorList = doctorBox.values.toList();
   }
 
-  getDoctorsFromHive() async {
+  Future<void> getDoctorsFromHive() async {
     var doctorBox = await Hive.openBox<Doctor>('docBox');
-    doctorList = doctorBox.values.map((item) => item).toList();
-    print(doctorList);
-    notifyListeners();
-  }
+    doctorList = doctorBox.values.toList();
 
-  searchDoctor(String searchValue) {
-    if (searchValue != '') {
-      doctorList = doctorList.where((item) {
-        return item.firstname.toLowerCase() +
-                    ' ' +
-                    item.lastname.toLowerCase() ==
-                searchValue.toLowerCase() ||
-            item.specialty.toLowerCase() == searchValue.toLowerCase();
-      }).toList();
-    } else {
-      return doctorList;
+    print("Doctors Retrieved: ${doctorList.length}");
+    getDoctors() async {
+      var doctorBox = await Hive.openBox<Doctor>('docBox');
+      doctorList = doctorBox.values.map((item) => item).toList();
     }
-    notifyListeners();
-  }
 
-  void addDoctorToList() {
-    Doctor doctor = Doctor(
-      firstname: firstName ?? '',
-      lastname: lastName ?? '',
-      bio: bio ?? '',
-      email: emailAddress ?? '',
-      gender: gender ?? '',
-      phoneNumber: phoneNumber ?? '',
-      schedule: schedule ?? [],
-      specialty: specialty ?? '',
-    );
+    getDoctorsFromHive() async {
+      var doctorBox = await Hive.openBox<Doctor>('docBox');
+      doctorList = doctorBox.values.map((item) => item).toList();
+      print(doctorList);
+      notifyListeners();
+    }
 
-    doctor.addDoctor(doctor);
+    void searchDoctor(String searchValue) {
+      if (searchValue != '') {
+        doctorList = doctorList.where((item) {
+          return item.firstname.toLowerCase() +
+                      ' ' +
+                      item.lastname.toLowerCase() ==
+                  searchValue.toLowerCase() ||
+              item.specialty.toLowerCase() == searchValue.toLowerCase();
+        }).toList();
+      } else {
+        getDoctorsFromHive();
+      }
+      notifyListeners();
+    }
 
-    notifyListeners();
+    void addDoctorToList() {
+      Doctor doctor = Doctor(
+        firstname: firstName ?? '',
+        lastname: lastName ?? '',
+        bio: bio ?? '',
+        email: emailAddress ?? '',
+        gender: gender ?? '',
+        phoneNumber: phoneNumber ?? '',
+        schedule: schedule ?? [],
+        specialty: specialty ?? '',
+      );
+
+      doctor.addDoctor(doctor);
+
+      notifyListeners();
+    }
+
+    Future<void> deleteDoctor(Doctor doctor) async {
+      var doctorBox = await Hive.openBox<Doctor>('docBox');
+      var key = doctorBox.keyAt(doctorBox.values.toList().indexOf(doctor));
+      await doctorBox.delete(key);
+      // Update the local list and notify listeners
+      await getDoctorsFromHive();
+    }
+
+    Future<void> updateDoctorInHive(Doctor updatedDoctor) async {
+      var doctorBox = await Hive.openBox<Doctor>('docBox');
+
+      // Find the existing doctor's key
+      var existingDoctor = doctorBox.values.firstWhere(
+        (doc) => doc.email == updatedDoctor.email,
+      );
+
+      print(existingDoctor.email);
+      if (existingDoctor != null) {
+        var key =
+            doctorBox.keyAt(doctorBox.values.toList().indexOf(existingDoctor));
+        await doctorBox.put(existingDoctor.id, updatedDoctor);
+      } else {
+        // If the doctor does not exist, you might want to handle this case
+        // For example, you could add the updatedDoctor as a new entry
+        await doctorBox.add(updatedDoctor);
+      }
+
+      await getDoctorsFromHive();
+    }
   }
 }

@@ -9,14 +9,26 @@ import 'package:meditap/utils/icons.dart';
 import 'package:meditap/utils/text_style.dart';
 import 'package:provider/provider.dart';
 
-class DoctorsListScreen extends StatelessWidget {
+class DoctorsListScreen extends StatefulWidget {
   const DoctorsListScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  _DoctorsListScreenState createState() => _DoctorsListScreenState();
+}
+
+class _DoctorsListScreenState extends State<DoctorsListScreen> {
+  @override
+  void initState() {
+    super.initState();
     final doctorProvider =
-        Provider.of<DoctorFormProvider>(context, listen: true);
-    doctorProvider.getDoctors();
+        Provider.of<DoctorFormProvider>(context, listen: false);
+    doctorProvider.getDoctorsFromHive();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final doctorProvider = Provider.of<DoctorFormProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(

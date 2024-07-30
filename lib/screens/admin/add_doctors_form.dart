@@ -60,10 +60,6 @@ class _AddDoctorsFormState extends State<AddDoctorsForm> {
               'Add a Doctor',
               style: f18_w400_n800,
             ),
-            // const Text(
-            //   'Preview',
-            //   style: TextStyle(color: primary500),
-            // ),
           ],
         ),
         centerTitle: false,
