@@ -13,9 +13,11 @@ class MyTextfield extends StatefulWidget {
   final TextInputType? keyType;
   final ValueChanged<String>? onChanged;
   final ValueChanged<List<String>>? onChangedMultiple;
+  final TextEditingController? controller;
 
   const MyTextfield({
     Key? key,
+    this.controller,
     required this.label,
     required this.hint,
     this.keyType,
@@ -91,6 +93,12 @@ class _MyTextfieldState extends State<MyTextfield> {
   Widget _buildTextFormField() {
     return TextFormField(
       controller: _controller,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'This Field is required';
+        }
+        return null;
+      },
       maxLines: widget.maxLines,
       keyboardType: widget.keyType,
       decoration: InputDecoration(
