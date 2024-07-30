@@ -37,7 +37,11 @@ class DoctorsListScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: doctorProvider.doctorList.length,
         itemBuilder: (context, index) {
-          return DoctorsListItem(doctor: doctorProvider.doctorList[index]);
+          return DoctorsListItem(
+            doctor: doctorProvider.doctorList[index],
+            onDelete: () =>
+                doctorProvider.deleteDoctor(doctorProvider.doctorList[index]),
+          );
         },
       ),
       bottomNavigationBar: Padding(
@@ -48,8 +52,8 @@ class DoctorsListScreen extends StatelessWidget {
             Flexible(
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => ScanPage()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const ScanPage()));
                 },
                 child: Container(
                   height: 44,
@@ -71,32 +75,30 @@ class DoctorsListScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              width: 15,
-            ),
+            const SizedBox(width: 12),
             Flexible(
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => AddDoctorsForm()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => const AddDoctorsForm()));
                 },
                 child: Container(
                   height: 44,
                   decoration: BoxDecoration(
                     color: shade0,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: primary500,
-                      width: 1,
-                    ),
+                    border: Border.all(color: primary600),
                   ),
-                  child: Center(
-                    child: Text(
-                      'Add a Doctor',
-                      style: f16_w600_p500.copyWith(
-                        color: primary500,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Add a Doctor',
+                        style: f16_w600_p500.copyWith(
+                          color: primary600,
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
               ),
