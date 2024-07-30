@@ -107,6 +107,21 @@ class DoctorFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  filterDoctor(
+    sortAscending,
+    sortDescending,
+    List<String> selectedSpecialties,
+  ) {
+    if (selectedSpecialties.isEmpty) {
+      getDoctorsFromHive();
+    } else {
+      doctorList = doctorList.where((item) {
+        return selectedSpecialties.contains(item.specialty);
+      }).toList();
+    }
+    notifyListeners();
+  }
+
   void addDoctorToList() {
     Doctor doctor = Doctor(
       firstname: firstName ?? '',

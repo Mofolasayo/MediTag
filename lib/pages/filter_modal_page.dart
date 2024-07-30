@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:meditap/providers/doctorform_provider.dart';
 import 'package:meditap/utils/icons.dart';
+import 'package:provider/provider.dart';
 
 class FilterModal extends StatefulWidget {
   final bool sortAscending;
@@ -114,6 +116,8 @@ class _FilterModalState extends State<FilterModal> {
 
   @override
   Widget build(BuildContext context) {
+    final doctorForm = Provider.of<DoctorFormProvider>(context);
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
@@ -215,6 +219,11 @@ class _FilterModalState extends State<FilterModal> {
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
+                doctorForm.filterDoctor(
+                  _sortAscending,
+                  _sortDescending,
+                  _selectedSpecialties,
+                );
                 Navigator.pop(context, {
                   'sortAscending': _sortAscending,
                   'sortDescending': _sortDescending,
