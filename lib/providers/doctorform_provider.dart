@@ -80,16 +80,15 @@ class DoctorFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  getDoctorsFromHive() async {
+  Future<void> getDoctorsFromHive() async {
     var doctorBox = await Hive.openBox<Doctor>('docBox');
     doctorList = doctorBox.values.map((item) => item).toList();
-
-    print(doctorList);
-
     notifyListeners();
   }
 
-  void addDoctorToList() {
+  Future<void> addOrUpdateDoctor() async {
+    var doctorBox = await Hive.openBox<Doctor>('docBox');
+
     Doctor doctor = Doctor(
       firstname: firstName ?? '',
       lastname: lastName ?? '',
@@ -101,11 +100,27 @@ class DoctorFormProvider with ChangeNotifier {
       specialty: specialty ?? '',
     );
 
-    // notifyListeners();
-    // // final theDoctor = Doctor.fromMap(doctor);
-    // // Add doctor to Hives
-    doctor.addDoctor(doctor);
-    // getDoctorsFromHive();
-    notifyListeners();
+    try {
+      var existingDoctor = doctorBox.values.firstWhere(
+        (doc) => doc.email == doctor.email,
+      );
+      var key =
+          doctorBox.keyAt(doctorBox.values.toList().indexOf(existingDoctor));
+      doctorBox.put(key, doctor);
+    } catch (e) {
+      // If the doctor doesn't exist, add a new entry
+      doctorBox.add(doctor);
+    }
+
+    // Update the local list and notify listeners
+    await getDoctorsFromHive();
+  }
+
+  Future<void> deleteDoctor(Doctor doctor) async {
+    var doctorBox = await Hive.openBox<Doctor>('docBox');
+    var key = doctorBox.keyAt(doctorBox.values.toList().indexOf(doctor));
+    await doctorBox.delete(key);
+    // Update the local list and notify listeners
+    await getDoctorsFromHive();
   }
 }
