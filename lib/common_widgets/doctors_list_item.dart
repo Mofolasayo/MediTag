@@ -29,7 +29,7 @@ class DoctorsListItem extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                doctor.firstname![0],
+                doctor.firstname,
                 style: const TextStyle(
                   fontSize: 18,
                   color: primary600,

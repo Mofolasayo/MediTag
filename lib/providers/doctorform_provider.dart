@@ -88,7 +88,7 @@ class DoctorFormProvider with ChangeNotifier {
   getDoctorsFromHive() async {
     var doctorBox = await Hive.openBox<Doctor>('docBox');
     doctorList = doctorBox.values.map((item) => item).toList();
-
+    print(doctorList);
     notifyListeners();
   }
 
