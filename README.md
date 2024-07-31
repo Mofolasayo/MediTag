@@ -49,7 +49,9 @@ Install dependencies:
 Run the app:
 ```flutter run```
 
-Apk: 
+Apk: https://drive.google.com/file/d/1t56lcpMCNHjeP05gWLg7SdKnDt4KAFY1/view?usp=sharing
+
+Figma link: https://www.figma.com/design/JrLmGjGpzg8TMzlrAyr4Vc/MediTag-NFC-App?node-id=11-2&t=ZE1T8chg9NxgADSP-0
 
 
 
