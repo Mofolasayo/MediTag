@@ -114,11 +114,9 @@ class MyApp extends StatelessWidget {
       home: const SplashScreen(),
       routes: {
         '/add-doctors-form': (context) => const AddDoctorsForm(),
-        '/doctor-bio': (context) => DoctorInfo(),
         '/nfc-scan': (context) => NfcScan(),
         '/patient-doctors-list': (context) => PatientDoctorsList(),
         '/doctors-list': (context) => DoctorsListScreen(),
-        '/edit-doctor-info': (context) => const EditDoctorsForm(),
       },
     );
   }

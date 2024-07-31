@@ -88,7 +88,6 @@ class DoctorFormProvider with ChangeNotifier {
   getDoctorsFromHive() async {
     var doctorBox = await Hive.openBox<Doctor>('docBox');
     doctorList = doctorBox.values.map((item) => item).toList();
-    print(doctorList);
     notifyListeners();
   }
 
@@ -139,5 +138,20 @@ class DoctorFormProvider with ChangeNotifier {
     getDoctorsFromHive();
 
     notifyListeners();
+  }
+
+  void updateDoctor(Doctor doctor) async {
+    print('in updator provider');
+    print(doctor.toJson());
+    var doctorBox = await Hive.openBox<Doctor>('docBox');
+    print('open box');
+    var existingDoctor =
+        doctorBox.values.firstWhere((doc) => doc.id == doctor.id);
+    print('existing doctor');
+    print(existingDoctor.toJson());
+
+    doctorBox.delete(existingDoctor.id);
+
+    doctor.addDoctor(doctor);
   }
 }

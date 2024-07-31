@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meditap/providers/doctorform_provider.dart';
 import 'package:meditap/screens/admin/add_doctors_form.dart';
 import 'package:meditap/screens/admin/doctors_list_screen.dart';
 import 'package:meditap/utils/colors.dart';
@@ -7,12 +8,16 @@ import 'package:meditap/screens/admin/how_to_use.dart';
 import 'package:meditap/utils/dotted_box.dart';
 import 'package:meditap/utils/icons.dart';
 import 'package:meditap/screens/scan_screen.dart';
+import 'package:provider/provider.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final doctorProvider =
+        Provider.of<DoctorFormProvider>(context, listen: true);
+
     return Padding(
       padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
       child: Column(
@@ -112,8 +117,8 @@ class Dashboard extends StatelessWidget {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const DoctorsListScreen()));
                 },
-                child: const TagOptions(
-                  option: '0',
+                child: TagOptions(
+                  option: doctorProvider.doctorList.length.toString(),
                   firstLine: 'Doctors',
                   secondLine: '',
                   icon: MediTagIcons.doctorIcon,

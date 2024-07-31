@@ -1,7 +1,6 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:meditap/models/doctor.dart';
+import 'package:meditap/screens/admin/doctor_bio_schedule.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/text_style.dart';
 
@@ -11,53 +10,58 @@ class DoctorsListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      decoration: const BoxDecoration(
-        color: shade0,
-        border: Border.symmetric(
-            horizontal: BorderSide(width: 0.3, color: neutral100)),
-      ),
-      // color: shade0,
-      height: 70,
-      child: Row(
-        children: [
-          Container(
-            height: 40,
-            width: 40,
-            decoration: const BoxDecoration(
-              color: primary50,
-            ),
-            child: Center(
-              child: Text(
-                doctor.firstname != '' || doctor.firstname.isNotEmpty
-                    ? doctor.firstname[0].toUpperCase()
-                    : '',
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: primary600,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => DoctorInfo(doctor: doctor)));
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        decoration: const BoxDecoration(
+          color: shade0,
+          border: Border.symmetric(
+              horizontal: BorderSide(width: 0.3, color: neutral100)),
+        ),
+        // color: shade0,
+        height: 70,
+        child: Row(
+          children: [
+            Container(
+              height: 40,
+              width: 40,
+              decoration: const BoxDecoration(
+                color: primary50,
+              ),
+              child: Center(
+                child: Text(
+                  doctor.firstname != '' || doctor.firstname.isNotEmpty
+                      ? doctor.firstname[0].toUpperCase()
+                      : '',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: primary600,
+                  ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '${doctor.firstname} ${doctor.lastname}',
-                style: f16_w600_p500.copyWith(
-                  color: neutral800,
+            const SizedBox(width: 10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '${doctor.firstname} ${doctor.lastname}',
+                  style: f16_w600_p500.copyWith(
+                    color: neutral800,
+                  ),
                 ),
-              ),
-              Text(
-                doctor.specialty!,
-                style: f14_w400_n500.copyWith(color: neutral600),
-              ),
-            ],
-          ),
-        ],
+                Text(
+                  doctor.specialty!,
+                  style: f14_w400_n500.copyWith(color: neutral600),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

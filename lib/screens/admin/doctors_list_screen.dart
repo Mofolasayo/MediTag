@@ -78,7 +78,7 @@ class DoctorsListScreen extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => AddDoctorsForm()));
+                      MaterialPageRoute(builder: (_) => const AddDoctorsForm()));
                 },
                 child: Container(
                   height: 44,
