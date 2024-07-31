@@ -47,7 +47,7 @@ class DoctorInfo extends StatelessWidget {
                           icon: SvgPicture.string(
                               MediTagIcons.whiteOutlineBackIcon),
                         ),
-                        Row(
+                        /*Row(
                           children: [
                             IconButton(
                               onPressed: () {
@@ -64,7 +64,7 @@ class DoctorInfo extends StatelessWidget {
                               ),
                             ),
                           ],
-                        ),
+                        ),*/
                       ],
                     ),
                   ),

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:meditap/providers/doctorform_provider.dart';
 import 'package:meditap/providers/nfc_provider.dart';
-import 'package:meditap/screens/admin/doctor_bio_schedule.dart';
 import 'package:meditap/screens/admin/doctors_list_screen.dart';
-import 'package:meditap/screens/admin/edit_doctor_info.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:meditap/models/doctor.dart';
-import 'package:meditap/screens/nfc_scan.dart';
 import 'package:meditap/screens/patient_doctor_list.dart';
 import 'package:meditap/screens/splash_screen.dart';
 import 'package:meditap/utils/colors.dart';
@@ -15,6 +13,9 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 
   // Initialise Hive
   await Hive.initFlutter();

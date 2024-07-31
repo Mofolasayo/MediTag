@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meditap/utils/colors.dart';
-import 'package:flutter/material.dart';
 
 class Textfield extends StatefulWidget {
   const Textfield({
