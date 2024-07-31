@@ -49,7 +49,7 @@ class HowToUse extends StatelessWidget {
                         spreadRadius: 0,
                         offset: Offset(0, 4))
                   ], color: shade0, borderRadius: BorderRadius.circular(15)),
-                  height: 490,
+                  height: Constants.deviceHeight(context) * 0.59,
                   width: Constants.deviceWidth(context) * 0.9,
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),

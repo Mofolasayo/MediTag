@@ -83,7 +83,7 @@ class WelcomeScreen extends StatelessWidget {
                                 ),
                                 child: SizedBox(
                                   height: 178,
-                                  width: 180,
+                                  width: Constants.deviceWidth(context) * 0.45,
                                   child: Column(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
@@ -126,7 +126,7 @@ class WelcomeScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 height: 178,
-                                width: 180,
+                                width: Constants.deviceWidth(context) * 0.45,
                                 child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,

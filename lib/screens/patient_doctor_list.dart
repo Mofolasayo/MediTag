@@ -37,7 +37,7 @@ class _PatientDoctorsListState extends State<PatientDoctorsList> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 13.0),
+          padding: const EdgeInsets.symmetric(horizontal: 13.0, vertical: 20),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -102,14 +102,8 @@ class _PatientDoctorsListState extends State<PatientDoctorsList> {
                                 style: TextStyle(fontSize: 20),
                               ),
                               const Text(
-                                'Input a doctor\'s name or specialty into the field or',
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                    color: neutral500),
-                              ),
-                              const Text(
-                                'use the filter to streamline your search.',
+                                textAlign: TextAlign.center,
+                                'Input a doctor\'s full name or specialty into the field or use the filter to streamline your search.',
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,

@@ -217,7 +217,7 @@ class _AddDoctorsFormState extends State<AddDoctorsForm> {
                                         width: 342,
                                         child: ElevatedButton(
                                           onPressed: () {
-                                            Navigator.of(context).pushReplacement(
+                                            Navigator.of(context).push(
                                                 MaterialPageRoute(
                                                     builder: (_) =>
                                                         DoctorsListScreen()));
