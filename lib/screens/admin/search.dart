@@ -98,19 +98,14 @@ class _SearchState extends State<Search> {
                             style: TextStyle(fontSize: 20),
                           ),
                           const Text(
-                            'Input a doctor\'s name or specialty into the field or',
+                            textAlign: TextAlign.center,
+                            'Input a doctor\'s name or specialty into the field or use the filter to streamline your search.',
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
                                 color: neutral500),
                           ),
-                          const Text(
-                            'use the filter to streamline your search.',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color: neutral500),
-                          ),
+                          
                         ],
                       ),
                     ),

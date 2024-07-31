@@ -109,7 +109,7 @@ class StepTiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(5),
+      padding: EdgeInsets.all(10),
       decoration: const BoxDecoration(
           border: Border(bottom: BorderSide(color: neutral100, width: 1))),
       child: ListTile(
