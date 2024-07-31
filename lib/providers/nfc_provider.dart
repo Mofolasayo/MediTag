@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meditap/models/doctor.dart';
 import 'package:meditap/pages/admin_page.dart';
 import 'package:meditap/providers/doctorform_provider.dart';
-import 'package:meditap/screens/admin/dashboard.dart';
 import 'package:meditap/screens/patient_doctor_list.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/icons.dart';
@@ -23,7 +23,7 @@ class NfcProvider extends ChangeNotifier {
   void _startSession() {
     isScanning = true;
     if (isSessionActive) {
-      print('Session is already active');
+      //print('Session is already active');
       return;
     }
     isSessionActive = true;
@@ -48,8 +48,8 @@ class NfcProvider extends ChangeNotifier {
         context: context,
         builder: (context) {
           return Container(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
+            padding: const EdgeInsets.all(16.0),
+            child: const Text(
               'NFC is not available on this device.',
               style: TextStyle(fontSize: 18.0, color: Colors.red),
             ),
@@ -59,7 +59,7 @@ class NfcProvider extends ChangeNotifier {
       return;
     }
     _startSession();
-    print("Started");
+    // print("Started");
 
     var doctorProvider =
         Provider.of<DoctorFormProvider>(context, listen: false);
@@ -71,7 +71,7 @@ class NfcProvider extends ChangeNotifier {
     NfcManager.instance.startSession(onDiscovered: (NfcTag tag) async {
       var ndef = Ndef.from(tag);
 
-      print(tag.data["type"]);
+      // print(tag.data["type"]);
       if (ndef == null || !ndef.isWritable) {
         String result = "Tag is not NDEF writable";
         _stopSession(errorMessage: result);
@@ -84,7 +84,7 @@ class NfcProvider extends ChangeNotifier {
       try {
         await ndef.write(message);
         result = "successful";
-        await Future.delayed(Duration(milliseconds: 600));
+        await Future.delayed(const Duration(milliseconds: 600));
         NfcManager.instance.stopSession();
         showModalBottomSheet(
           context: context,
@@ -125,7 +125,7 @@ class NfcProvider extends ChangeNotifier {
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (_) => AdminPage()),
+                          MaterialPageRoute(builder: (_) => const AdminPage()),
                           (route) => false,
                         );
                       },
@@ -159,8 +159,8 @@ class NfcProvider extends ChangeNotifier {
         context: context,
         builder: (context) {
           return Container(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
+            padding: const EdgeInsets.all(16.0),
+            child: const Text(
               'NFC is not available on this device.',
               style: TextStyle(fontSize: 18.0, color: Colors.red),
             ),
@@ -194,7 +194,7 @@ class NfcProvider extends ChangeNotifier {
           notifyListeners();
         }
 
-        print(doctors);
+        //print(doctors);
         _drProvider.getDoctors();
         _stopSession();
         showModalBottomSheet(
@@ -213,21 +213,14 @@ class NfcProvider extends ChangeNotifier {
                   const Column(
                     children: [
                       Text(
-                        "Your Information has been gotten from the Tag",
+                        textAlign: TextAlign.center,
+                        "Your Information has been gotten from the Tag successfully",
                         style: TextStyle(
                             fontSize: 16,
                             color: neutral500,
                             fontWeight: FontWeight.w400),
                       ),
-                      Center(
-                        child: Text(
-                          "successfully",
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: neutral500,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
+                      
                     ],
                   ),
                   SizedBox(
@@ -237,7 +230,7 @@ class NfcProvider extends ChangeNotifier {
                       onPressed: () {
                         Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
-                              builder: (_) => PatientDoctorsList()),
+                              builder: (_) => const PatientDoctorsList()),
                           (route) => false,
                         );
                       },

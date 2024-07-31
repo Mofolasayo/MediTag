@@ -9,7 +9,6 @@ import 'package:meditap/screens/admin/how_to_use.dart';
 import 'package:meditap/utils/constants.dart';
 import 'package:meditap/utils/dotted_box.dart';
 import 'package:meditap/utils/icons.dart';
-import 'package:meditap/screens/scan_screen.dart';
 import 'package:provider/provider.dart';
 
 class Dashboard extends StatelessWidget {
@@ -30,7 +29,8 @@ class Dashboard extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => AddDoctorsForm()));
+                      MaterialPageRoute(
+                      builder: (_) => const AddDoctorsForm()));
                   // showModalBottomSheet(
                   //   context: context,
                   //   builder: (context) {

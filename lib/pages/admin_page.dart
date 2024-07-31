@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditap/screens/admin/dashboard.dart';
 import 'package:meditap/screens/admin/search.dart';
 import 'package:meditap/screens/admin/sign_in.dart';
-import 'package:meditap/screens/login_screen.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/icons.dart';
 

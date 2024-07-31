@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditap/screens/admin/sign_in.dart';
 import 'package:meditap/screens/nfc_read_screen.dart';
-import 'package:meditap/screens/scan_screen.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/constants.dart';
 import 'package:meditap/utils/icons.dart';
@@ -72,7 +71,7 @@ class WelcomeScreen extends StatelessWidget {
                             GestureDetector(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (_) => ScanReadPage()));
+                                    builder: (_) => const ScanReadPage()));
                                 // Navigator.of(context).pushNamed("/nfc-scan");
                               },
                               child: Container(

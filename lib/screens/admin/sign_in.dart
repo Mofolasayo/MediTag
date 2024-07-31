@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditap/pages/admin_page.dart';
+import 'package:meditap/screens/welcome_screen.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/constants.dart';
 import 'package:meditap/utils/icons.dart';
@@ -16,7 +17,10 @@ class SignIn extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
-          onTap: Navigator.of(context).pop,
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => const WelcomeScreen()));
+          },
           child: Padding(
             padding: const EdgeInsets.only(left: 18.0, right: 10),
             child: SvgPicture.string(MediTagIcons.whiteBackIcon),

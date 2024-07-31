@@ -56,7 +56,7 @@ class DoctorsListItem extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  doctor.specialty!,
+                  doctor.specialty,
                   style: f14_w400_n500.copyWith(color: neutral600),
                 ),
               ],

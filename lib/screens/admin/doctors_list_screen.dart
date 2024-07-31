@@ -4,7 +4,6 @@ import 'package:meditap/common_widgets/doctors_list_item.dart';
 import 'package:meditap/pages/admin_page.dart';
 import 'package:meditap/providers/doctorform_provider.dart';
 import 'package:meditap/screens/admin/add_doctors_form.dart';
-import 'package:meditap/screens/admin/dashboard.dart';
 import 'package:meditap/screens/scan_screen.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/constants.dart';
@@ -167,7 +166,8 @@ class DoctorsListScreen extends StatelessWidget {
         leading: GestureDetector(
           onTap: () {
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => AdminPage()));
+                .push(
+                MaterialPageRoute(builder: (context) => const AdminPage()));
           },
           child: Padding(
             padding: const EdgeInsets.only(left: 18.0, right: 10),

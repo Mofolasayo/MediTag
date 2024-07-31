@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meditap/models/doctor.dart';
-import 'package:meditap/screens/admin/edit_doctor_info.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/icons.dart';
@@ -16,7 +15,6 @@ class DoctorInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(doctor.toJson());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -208,7 +206,7 @@ class DoctorInfo extends StatelessWidget {
                 ),
                 child: Column(
                   children: doctor.schedule != null
-                      ? doctor.schedule!
+                      ? doctor.schedule
                           .map((time) => _buildAvailabilityRow(
                               time.split('; ')[0], time.split('; ')[1]))
                           .toList()
