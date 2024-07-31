@@ -1,6 +1,6 @@
 # Meditag
 
-MediTap is a Flutter-based mobile application that leverages NFC technology to provide quick access to contact information for doctors within a hospital. The app aims to enhance hospital efficiency and improve patient experience by streamlining access to doctors' information.
+MediTag is a Flutter-based mobile application that leverages NFC technology to provide quick access to contact information for doctors within a hospital. The app aims to enhance hospital efficiency and improve patient experience by streamlining access to doctors' information.
 
 ## Features
 
