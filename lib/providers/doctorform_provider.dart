@@ -155,6 +155,13 @@ class DoctorFormProvider with ChangeNotifier {
     await getDoctorsFromHive();
     print(doctorBox.toMap());
   }
+  void removeDoctor(Doctor doctor) async {
+    var doctorBox = await Hive.openBox<Doctor>('docBox');
+    var key = doctorBox.keyAt(doctorBox.values.toList().indexOf(doctor));
+    await doctorBox.delete(key);
+
+    getDoctorsFromHive();
+  }
 }
 
 

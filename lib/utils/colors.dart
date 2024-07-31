@@ -19,3 +19,6 @@ const Color neutral600 = Color.fromRGBO(115, 118, 122, 1);
 const Color shade0 = Color.fromRGBO(255, 253, 253, 1);
 
 const Color blend = Color.fromRGBO(206, 206, 206, 0.16);
+
+const Color error500 = Color.fromRGBO(255, 0, 0, 1);
+const Color error50 = Color.fromRGBO(255, 242, 242, 1);
