@@ -73,8 +73,9 @@ class SignIn extends StatelessWidget {
                             height: 8,
                           ),
                           Textfield(
+                              isPassword: true,
                               label: 'Hkkfa23iejww9',
-                              type: TextInputType.text,
+                              type: TextInputType.visiblePassword,
                               controller: _controller,
                               formKey: formKey),
                           const SizedBox(

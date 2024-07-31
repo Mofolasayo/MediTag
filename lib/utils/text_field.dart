@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meditap/utils/colors.dart';
+import 'package:flutter/material.dart';
 
 class Textfield extends StatefulWidget {
   const Textfield({
@@ -8,35 +9,38 @@ class Textfield extends StatefulWidget {
     required this.type,
     required this.controller,
     required this.formKey,
+    this.isPassword = false,
   });
 
   final String label;
   final TextInputType type;
   final TextEditingController controller;
   final GlobalKey<FormState> formKey;
+  final bool isPassword;
 
   @override
   _TextfieldState createState() => _TextfieldState();
 }
 
 class _TextfieldState extends State<Textfield> {
-  late FocusNode _focusNode;
-  bool _isFocused = false;
+  late FocusNode focusNode;
+  bool isFocused = false;
+  bool obscureText = true; 
 
   @override
   void initState() {
     super.initState();
-    _focusNode = FocusNode();
-    _focusNode.addListener(() {
+    focusNode = FocusNode();
+    focusNode.addListener(() {
       setState(() {
-        _isFocused = _focusNode.hasFocus;
+        isFocused = focusNode.hasFocus;
       });
     });
   }
 
   @override
   void dispose() {
-    _focusNode.dispose();
+    focusNode.dispose();
     super.dispose();
   }
 
@@ -45,18 +49,32 @@ class _TextfieldState extends State<Textfield> {
     return TextFormField(
       keyboardType: widget.type,
       controller: widget.controller,
-      focusNode: _focusNode,
+      focusNode: focusNode,
+      obscureText: widget.isPassword && obscureText,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(8),
-        labelText: _isFocused ? '' : widget.label,
+        labelText: isFocused ? '' : widget.label,
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(9),
-            borderSide: BorderSide(color: neutral800)),
+          borderRadius: BorderRadius.circular(9),
+          borderSide: BorderSide(color: neutral800),
+        ),
+        suffixIcon: widget.isPassword
+            ? IconButton(
+                icon: Icon(
+                  obscureText ? Icons.visibility_off : Icons.visibility,
+                ),
+                onPressed: () {
+                  setState(() {
+                    obscureText = !obscureText;
+                  });
+                },
+              )
+            : null,
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please enter a value';
-        } else if (value != 'Starlight') {
+        } else if (widget.isPassword && value != 'Starlight') {
           return 'Please enter a valid password';
         }
         return null;

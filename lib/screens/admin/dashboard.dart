@@ -5,6 +5,7 @@ import 'package:meditap/screens/admin/doctors_list_screen.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditap/screens/admin/how_to_use.dart';
+import 'package:meditap/utils/constants.dart';
 import 'package:meditap/utils/dotted_box.dart';
 import 'package:meditap/utils/icons.dart';
 import 'package:meditap/screens/scan_screen.dart';
@@ -159,8 +160,8 @@ class TagOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 178,
-      width: 178,
+      height: Constants.deviceHeight(context) * 0.23,
+      width: Constants.deviceWidth(context) * 0.43,
       decoration: BoxDecoration(
         border: Border.all(color: neutral100),
         borderRadius: BorderRadius.circular(5),

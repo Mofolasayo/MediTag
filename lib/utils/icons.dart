@@ -348,4 +348,12 @@ static const String deleteIcon =
 <path d="M65.8594 96.5713H10.1433C9.1176 96.5713 8.28613 97.4028 8.28613 98.4284V102.143C8.28613 103.168 9.1176 104 10.1433 104H65.8594C66.8851 104 67.7166 103.168 67.7166 102.143V98.4284C67.7166 97.4028 66.8851 96.5713 65.8594 96.5713Z" fill="#FF0000"/>
 </svg>
 ''';
+static const String eyeIcon =
+      '''<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.5 8C7.5 14.5 16.5 14.5 19.5 8" stroke="#56595B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.8162 11.3174L19.5 14.9999" stroke="#56595B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 12.875V16.5" stroke="#56595B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.18383 11.3174L4.5 14.9999" stroke="#56595B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+''';
 }
