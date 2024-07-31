@@ -168,5 +168,3 @@ class DoctorFormProvider with ChangeNotifier {
     getDoctorsFromHive();
   }
 }
-
-

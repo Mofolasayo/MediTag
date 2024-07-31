@@ -6,27 +6,26 @@ import 'package:meditap/utils/icons.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:provider/provider.dart';
 
-class ScanPage extends StatefulWidget {
-  const ScanPage({super.key});
+class ScanReadPage extends StatefulWidget {
+  const ScanReadPage({super.key});
 
   @override
-  State<ScanPage> createState() => _ScanPageState();
+  State<ScanReadPage> createState() => _ScanReadPageState();
 }
 
-class _ScanPageState extends State<ScanPage> {
+class _ScanReadPageState extends State<ScanReadPage> {
   @override
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final nfcprovider = Provider.of<NfcProvider>(context, listen: false);
-      nfcprovider.ndefWrite(context);
+      nfcprovider.ndefRead(context);
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final pro = Provider.of<NfcProvider>(context);
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 60,
@@ -48,7 +47,7 @@ class _ScanPageState extends State<ScanPage> {
               startDelay: const Duration(milliseconds: 1000),
               glowColor: primary500,
               glowShape: BoxShape.circle,
-              animate: pro.isScanning,
+              animate: true,
               curve: Curves.fastOutSlowIn,
               child: const Material(
                 elevation: 8.0,
