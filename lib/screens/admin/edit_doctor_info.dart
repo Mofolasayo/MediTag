@@ -148,13 +148,13 @@ class EditDoctorsForm extends StatelessWidget {
                     title: 'Choose Available times',
                     hasDropdown: true,
                     options: const [
-                      'Monday: 9:00am - 5:00pm',
-                      'Tuesday: 9:00am - 5:00pm',
-                      'Wednesday: 9:00am - 5:00pm',
-                      'Thursday: 9:00am - 5:00pm',
-                      'Friday: 9:00am - 5:00pm',
-                      'Saturday: 9:00am - 5:00pm',
-                      'Sunday: 9:00am - 5:00pm'
+                      'Monday; 9:00am - 5:00pm',
+                      'Tuesday; 9:00am - 5:00pm',
+                      'Wednesday; 9:00am - 5:00pm',
+                      'Thursday; 9:00am - 5:00pm',
+                      'Friday; 9:00am - 5:00pm',
+                      'Saturday; 9:00am - 5:00pm',
+                      'Sunday; 9:00am - 5:00pm'
                     ],
                     isMultipleSelection: true,
                     initialValue: doctorForm.schedule?.join(', '),

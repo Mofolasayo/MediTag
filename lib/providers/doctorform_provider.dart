@@ -153,5 +153,8 @@ class DoctorFormProvider with ChangeNotifier {
     doctor.addDoctor(doctor);
 
     await getDoctorsFromHive();
+    print(doctorBox.toMap());
   }
 }
+
+

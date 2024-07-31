@@ -12,7 +12,8 @@ class DoctorsListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => DoctorInfo(doctor: doctor)));
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => DoctorInfo(doctor: doctor)));
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),

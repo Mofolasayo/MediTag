@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:meditap/models/doctor.dart';
 import 'package:meditap/screens/admin/edit_doctor_info.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/icons.dart';
 import 'package:meditap/utils/text_style.dart';
-import 'package:meditap/providers/doctor_provider.dart';
 
 class DoctorInfo extends StatelessWidget {
   final Doctor doctor;
@@ -18,6 +16,7 @@ class DoctorInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(doctor.toJson());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -100,11 +99,10 @@ class DoctorInfo extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        '${doctor.firstname ?? ''} ${doctor.lastname ?? ''}',
+                        '${doctor.firstname} ${doctor.lastname}',
                         style: bodyLarge,
                       ),
-                      const Icon(Icons.male_outlined,
-                          color: neutral500, size: 15),
+                      SvgPicture.string(MediTagIcons.genderIcon),
                     ],
                   ),
                   const SizedBox(
@@ -113,10 +111,12 @@ class DoctorInfo extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.male_outlined,
-                          color: neutral500, size: 15),
+                      SvgPicture.string(MediTagIcons.stethoscope),
+                      const SizedBox(
+                        width: 5,
+                      ),
                       Text(
-                        doctor.specialty ?? '',
+                        doctor.specialty,
                         style: bodySmall.copyWith(fontSize: 14),
                       ),
                     ],
@@ -128,8 +128,11 @@ class DoctorInfo extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Icon(Icons.phone, color: neutral500, size: 15),
+                      const SizedBox(
+                        width: 5,
+                      ),
                       Text(
-                        doctor.phoneNumber ?? '',
+                        doctor.phoneNumber,
                         style: bodySmall.copyWith(fontSize: 14),
                       ),
                     ],
@@ -141,8 +144,11 @@ class DoctorInfo extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Icon(Icons.mail, color: neutral500, size: 15),
+                      const SizedBox(
+                        width: 5,
+                      ),
                       Text(
-                        doctor.email ?? '',
+                        doctor.email,
                         style: bodySmall.copyWith(fontSize: 14),
                       ),
                     ],
@@ -175,7 +181,7 @@ class DoctorInfo extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      doctor.bio ?? '',
+                      doctor.bio,
                       style: bodyLarge.copyWith(
                           fontWeight: FontWeight.w500, fontSize: 14),
                     ),
@@ -210,7 +216,7 @@ class DoctorInfo extends StatelessWidget {
                   children: doctor.schedule != null
                       ? doctor.schedule!
                           .map((time) => _buildAvailabilityRow(
-                              time.split(': ')[0], time.split(': ')[1]))
+                              time.split('; ')[0], time.split('; ')[1]))
                           .toList()
                       : [],
                 ),

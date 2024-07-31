@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:meditap/common_widgets/regular_dropdown.dart';
+import 'package:meditap/common_widgets/schedule_selector.dart';
 import 'package:meditap/utils/text_style.dart';
 
 class MyTextfield extends StatefulWidget {
@@ -75,10 +77,16 @@ class _MyTextfieldState extends State<MyTextfield> {
           Text(widget.label, style: f12_w600_n800),
           const SizedBox(height: 10),
           GestureDetector(
-            onTap: widget.hasDropdown
-                ? () =>
-                    _showModalBottomSheet(context, widget.options, widget.title)
-                : null,
+            onTap: () {
+              if (widget.hasDropdown &&
+                  widget.isMultipleSelection &&
+                  widget.title == 'Choose Available times') {
+                _showScheduleDialog(context, widget.options, widget.title);
+              } else if (widget.hasDropdown) {
+                _showRegularDropdownDialog(
+                    context, widget.options, widget.title);
+              }
+            },
             child: widget.hasDropdown
                 ? AbsorbPointer(
                     child: _buildTextFormField(),
@@ -113,85 +121,49 @@ class _MyTextfieldState extends State<MyTextfield> {
     );
   }
 
-  void _showModalBottomSheet(
+  void _showScheduleDialog(
       BuildContext context, List<String>? options, String title) {
-    showModalBottomSheet(
+    showDialog(
       context: context,
       builder: (BuildContext context) {
-        return options != null
-            ? StatefulBuilder(
-                builder: (BuildContext context, StateSetter setModalState) {
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(title),
-                            IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: const Icon(Icons.close),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: options.map((option) {
-                          bool isSelected = selectedOptions.contains(option);
-                          return ListTile(
-                            title: Text(option),
-                            leading: widget.isMultipleSelection
-                                ? Checkbox(
-                                    value: isSelected,
-                                    onChanged: (bool? value) {
-                                      setModalState(() {
-                                        if (value == true) {
-                                          selectedOptions.add(option);
-                                        } else {
-                                          selectedOptions.remove(option);
-                                        }
-                                      });
-                                    },
-                                  )
-                                : null,
-                            onTap: () {
-                              if (widget.isMultipleSelection) {
-                                setModalState(() {
-                                  if (isSelected) {
-                                    selectedOptions.remove(option);
-                                  } else {
-                                    selectedOptions.add(option);
-                                  }
-                                });
-                              } else {
-                                setState(() {
-                                  _controller.text = option;
-                                  Navigator.pop(context);
-                                });
-                              }
-                            },
-                          );
-                        }).toList(),
-                      ),
-                    ],
-                  );
-                },
-              )
-            : Container();
+        return Align(
+          alignment: Alignment.bottomCenter,
+          child: ScheduleDialog(
+            title: title,
+            options: options ?? [],
+            initialSelectedOptions: selectedOptions,
+            onSelectedOptionsChanged: (List<String> selected) {
+              setState(() {
+                selectedOptions = selected;
+                _controller.text = selected.join(', ');
+                if (widget.onChangedMultiple != null) {
+                  widget.onChangedMultiple!(selectedOptions);
+                }
+              });
+            },
+          ),
+        );
       },
-    ).whenComplete(() {
-      if (widget.isMultipleSelection) {
+    );
+  }
+
+  void _showRegularDropdownDialog(
+      BuildContext context, List<String>? options, String title) {
+    showRegularDropdownDialog(
+      context,
+      title: title,
+      options: options ?? [],
+      isMultipleSelection: widget.isMultipleSelection,
+      selectedOptions: selectedOptions,
+      onSelectionChanged: (selected) {
         setState(() {
-          _controller.text = selectedOptions.join(', ');
+          selectedOptions = selected;
+          _controller.text = selected.join(', ');
           if (widget.onChangedMultiple != null) {
             widget.onChangedMultiple!(selectedOptions);
           }
         });
-      }
-    });
+      },
+    );
   }
 }

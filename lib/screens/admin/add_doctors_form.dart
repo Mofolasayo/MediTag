@@ -60,10 +60,6 @@ class _AddDoctorsFormState extends State<AddDoctorsForm> {
               'Add a Doctor',
               style: f18_w400_n800,
             ),
-            // const Text(
-            //   'Preview',
-            //   style: TextStyle(color: primary500),
-            // ),
           ],
         ),
         centerTitle: false,
@@ -126,6 +122,7 @@ class _AddDoctorsFormState extends State<AddDoctorsForm> {
                     const SizedBox(height: 16),
                     MyTextfield(
                       controller: genderController,
+                      title: 'Choose Gender',
                       hint: 'Select Gender',
                       label: 'Gender',
                       keyType: TextInputType.text,
@@ -167,13 +164,13 @@ class _AddDoctorsFormState extends State<AddDoctorsForm> {
                       title: 'Choose Available times',
                       hasDropdown: true,
                       options: const [
-                        'Monday: 9:00am - 5:00pm',
-                        'Tuesday: 9:00am - 5:00pm',
-                        'Wednesday: 9:00am - 5:00pm',
-                        'Thursday: 9:00am - 5:00pm',
-                        'Friday: 9:00am - 5:00pm',
-                        'Saturday: 9:00am - 5:00pm',
-                        'Sunday: 9:00am - 5:00pm'
+                        'Monday; 9:00am - 5:00pm',
+                        'Tuesday; 9:00am - 5:00pm',
+                        'Wednesday; 9:00am - 5:00pm',
+                        'Thursday; 9:00am - 5:00pm',
+                        'Friday; 9:00am - 5:00pm',
+                        'Saturday; 9:00am - 5:00pm',
+                        'Sunday; 9:00am - 5:00pm'
                       ],
                       isMultipleSelection: true,
                       onChangedMultiple: (values) =>
