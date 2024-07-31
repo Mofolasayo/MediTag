@@ -156,5 +156,3 @@ class DoctorFormProvider with ChangeNotifier {
     print(doctorBox.toMap());
   }
 }
-
-

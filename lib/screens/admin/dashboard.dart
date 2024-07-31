@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meditap/providers/doctorform_provider.dart';
 import 'package:meditap/screens/admin/add_doctors_form.dart';
 import 'package:meditap/screens/admin/doctors_list_screen.dart';
+import 'package:meditap/screens/nfc_read_screen.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditap/screens/admin/how_to_use.dart';
@@ -96,7 +97,7 @@ class Dashboard extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const ScanPage()));
+                      builder: (context) => const ScanReadPage()));
                 },
                 child: const TagOptions(
                   icon: MediTagIcons.readATag,

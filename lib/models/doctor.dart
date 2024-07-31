@@ -48,6 +48,18 @@ class Doctor {
       schedule: data["schedule"],
     );
   }
+  factory Doctor.fromJson(Map<String, dynamic> json) {
+    return Doctor(
+      firstname: json['firstname'],
+      lastname: json['lastname'],
+      email: json['email'],
+      gender: json['gender'],
+      bio: json['bio'],
+      specialty: json['specialty'],
+      phoneNumber: json['phoneNumber'],
+      schedule: List<String>.from(json['schedule']),
+    );
+  }
 
   Map<String, dynamic> toJson() {
     return {
