@@ -103,7 +103,20 @@ class _MyTextfieldState extends State<MyTextfield> {
       controller: _controller,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'This Field is required';
+          return 'This field is required';
+        }
+        if (widget.label.toLowerCase() == 'email address') {
+          // Email validation regex
+          final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
+          if (!emailRegex.hasMatch(value)) {
+            return 'Please enter a valid email address';
+          }
+        } else if (widget.label.toLowerCase() == 'phone number') {
+          // Phone validation regex 
+          final phoneRegex = RegExp(r'^\+?[0-9]{10,15}$');
+          if (!phoneRegex.hasMatch(value)) {
+            return 'Please enter a valid phone number';
+          }
         }
         return null;
       },
