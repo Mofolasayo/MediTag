@@ -17,6 +17,7 @@ class DoctorFormProvider with ChangeNotifier {
   }
 
   List<Doctor> doctorList = [];
+  List<Doctor> allDoctors = [];
 
   void setInitialValues(
     String? firstName,
@@ -85,26 +86,30 @@ class DoctorFormProvider with ChangeNotifier {
     doctorList = doctorBox.values.map((item) => item).toList();
   }
 
+  
   getDoctorsFromHive() async {
     var doctorBox = await Hive.openBox<Doctor>('docBox');
-    doctorList = doctorBox.values.map((item) => item).toList();
+    allDoctors =
+        doctorBox.values.map((item) => item).toList(); // Store all doctors
+    doctorList = List.from(allDoctors); // Create a copy for the current list
     notifyListeners();
   }
 
   searchDoctor(String searchValue) {
-    if (searchValue != '') {
-      doctorList = doctorList.where((item) {
-        return item.firstname.toLowerCase() +
-                    ' ' +
-                    item.lastname.toLowerCase() ==
-                searchValue.toLowerCase() ||
-            item.specialty.toLowerCase() == searchValue.toLowerCase();
+    if (searchValue.isNotEmpty) {
+      doctorList = allDoctors.where((item) {
+        return (item.firstname + ' ' + item.lastname)
+                .toLowerCase()
+                .contains(searchValue.toLowerCase()) ||
+            item.specialty.toLowerCase().contains(searchValue.toLowerCase());
       }).toList();
     } else {
-      return doctorList;
+      doctorList =
+          List.from(allDoctors); // Restore all doctors when search is empty
     }
     notifyListeners();
   }
+  
 
   filterDoctor(
     sortAscending,
