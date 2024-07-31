@@ -1,16 +1,68 @@
-# meditap
+# Meditag
 
-A new Flutter project.
+MediTap is a Flutter-based mobile application that leverages NFC technology to provide quick access to contact information for doctors within a hospital. The app aims to enhance hospital efficiency and improve patient experience by streamlining access to doctors' information.
+
+## Features
+
+- **NFC Tag Reading:** Patients can scan NFC tags to quickly access a doctor's contact information.
+
+- **NFC Tag Writing:** Hospital administrators can write doctors' contact information to NFC tags.
+
+- **Profile Management:** Doctors can update their profiles, including availability and office hours.
+
+- **Search and Filter:** Patients can search for doctors by name, specialty, or department.
+
+- **Admin Dashboard**: Administrators can manage doctor information and NFC tag data.
+
+## Key Objectives
+- Provide seamless access to contact information of available doctors.
+  
+- Enable efficient management of doctors' information on NFC tags.
+  
+- Improve patient experience through quick access to relevant doctor details.
+
+## Target Users
+- Patients
+- Doctors
+- Hospital Administration
+
+## Dependencies
+- Flutter
+- Dart
+- Hive (for database)
+- Provider (for state management)
+- Nfc_manager
+- Uuid (for unique doctor id)
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Installation
+Clone the repository:
 
-A few resources to get you started if this is your first Flutter project:
+```git clone https://github.com/your-username/MediTag.git```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```cd MediTag```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Install dependencies:
+```flutter pub get```
+
+Run the app:
+```flutter run```
+
+Apk: 
+
+
+
+<img width="441" alt="Screenshot 2024-07-31 at 20 49 17" src="https://github.com/user-attachments/assets/eb4f3d2b-2e73-4642-8ff7-07413efd67bf">
+
+
+<img width="441" alt="Screenshot 2024-07-31 at 20 49 17" src="https://github.com/user-attachments/assets/ecf02197-ffed-4ad8-a84b-8da664688b50">
+
+
+<img width="441" alt="Screenshot 2024-07-31 at 20 49 17" src="https://github.com/user-attachments/assets/5ba62eb8-deba-4192-8c14-728ac8468ba6">
+
+
+<img width="441" alt="Screenshot 2024-07-31 at 20 49 17" src="https://github.com/user-attachments/assets/a5777d2c-b626-421c-98b0-1b34effb9e47">
+
+
+
