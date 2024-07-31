@@ -140,18 +140,18 @@ class DoctorFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateDoctor(Doctor doctor) async {
-    print('in updator provider');
-    print(doctor.toJson());
+  void updateDoctor(Doctor oldDoctor, Doctor doctor) async {
+    print(oldDoctor.toJson());
     var doctorBox = await Hive.openBox<Doctor>('docBox');
-    print('open box');
-    var existingDoctor =
-        doctorBox.values.firstWhere((doc) => doc.id == doctor.id);
-    print('existing doctor');
-    print(existingDoctor.toJson());
+    print(doctorBox.toMap());
 
-    doctorBox.delete(existingDoctor.id);
+    var key = doctorBox.keyAt(doctorBox.values.toList().indexOf(oldDoctor));
+    await doctorBox.delete(key);
 
+    print(doctorBox.toMap());
+    // Update the local list and notify listeners
     doctor.addDoctor(doctor);
+
+    await getDoctorsFromHive();
   }
 }

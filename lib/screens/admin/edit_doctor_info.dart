@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:meditap/common_widgets/my_textfield.dart';
 import 'package:meditap/models/doctor.dart';
 import 'package:meditap/providers/doctorform_provider.dart';
+import 'package:meditap/screens/admin/doctors_list_screen.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/icons.dart';
 import 'package:meditap/utils/text_style.dart';
@@ -33,7 +34,6 @@ class EditDoctorsForm extends StatelessWidget {
         doctor.schedule,
       );
     });
-
 
     return Scaffold(
       appBar: AppBar(
@@ -180,8 +180,11 @@ class EditDoctorsForm extends StatelessWidget {
                         print('updated doctor');
                         print(updatedDoctor.toJson());
 
-                        doctorForm.updateDoctor(updatedDoctor);
-                        Navigator.pop(context);
+                        doctorForm.updateDoctor(doctor, updatedDoctor);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (_) => DoctorsListScreen()),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primary500,
