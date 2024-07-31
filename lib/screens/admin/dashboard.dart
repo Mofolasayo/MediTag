@@ -6,6 +6,7 @@ import 'package:meditap/screens/nfc_read_screen.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditap/screens/admin/how_to_use.dart';
+import 'package:meditap/utils/constants.dart';
 import 'package:meditap/utils/dotted_box.dart';
 import 'package:meditap/utils/icons.dart';
 import 'package:meditap/screens/scan_screen.dart';
@@ -87,8 +88,7 @@ class Dashboard extends StatelessWidget {
                 child: const DottedBorderContainer(
                   child: TagOptions(
                     option: 'Add a Doctor',
-                    firstLine: 'Make an addition to the',
-                    secondLine: 'number of doctors',
+                    firstLine: 'Make an addition to the number of doctors',
                     icon: MediTagIcons.addIcon,
                   ),
                 ),
@@ -102,8 +102,7 @@ class Dashboard extends StatelessWidget {
                 child: const TagOptions(
                   icon: MediTagIcons.readATag,
                   option: 'Read a Tag',
-                  firstLine: 'Move near a tag to view',
-                  secondLine: 'its content',
+                  firstLine: 'Move near a tag to view its content',
                 ),
               )
             ],
@@ -121,7 +120,6 @@ class Dashboard extends StatelessWidget {
                 child: TagOptions(
                   option: doctorProvider.doctorList.length.toString(),
                   firstLine: 'Doctors',
-                  secondLine: '',
                   icon: MediTagIcons.doctorIcon,
                 ),
               ),
@@ -133,8 +131,7 @@ class Dashboard extends StatelessWidget {
                 },
                 child: const TagOptions(
                     option: 'How to use',
-                    firstLine: 'Read through our guide',
-                    secondLine: 'to learn how to use',
+                    firstLine: 'Read through our guide to learn how to use',
                     icon: MediTagIcons.howToUse),
               )
             ],
@@ -150,18 +147,16 @@ class TagOptions extends StatelessWidget {
     super.key,
     required this.option,
     required this.firstLine,
-    required this.secondLine,
     required this.icon,
   });
   final String option;
   final String firstLine;
-  final String secondLine;
   final String icon;
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 178,
-      width: 178,
+      height: Constants.deviceHeight(context) * 0.23,
+      width: Constants.deviceWidth(context) * 0.43,
       decoration: BoxDecoration(
         border: Border.all(color: neutral100),
         borderRadius: BorderRadius.circular(5),
@@ -174,19 +169,14 @@ class TagOptions extends StatelessWidget {
           Column(
             children: [
               Text(
+                textAlign: TextAlign.center,
                 firstLine,
                 style: const TextStyle(
                     color: neutral500,
                     fontSize: 14,
                     fontWeight: FontWeight.w400),
               ),
-              Text(
-                secondLine,
-                style: const TextStyle(
-                    color: neutral500,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400),
-              )
+              
             ],
           )
         ],

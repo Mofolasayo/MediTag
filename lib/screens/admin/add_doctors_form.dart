@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meditap/screens/admin/doctors_list_screen.dart';
+import 'package:meditap/utils/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meditap/common_widgets/my_textfield.dart';
@@ -185,14 +186,13 @@ class _AddDoctorsFormState extends State<AddDoctorsForm> {
                           if (_formKey.currentState!.validate()) {
                             doctorForm.addDoctorToList();
                             // Show the modal when the save button is clicked
-                            showDialog(
+                            showModalBottomSheet(
                               context: context,
                               builder: (BuildContext context) {
-                                return AlertDialog(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  content: Column(
+                                return Container(
+                                  height: 320,
+                                  width: Constants.deviceWidth(context),
+                                  child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       SvgPicture.string(
@@ -207,20 +207,30 @@ class _AddDoctorsFormState extends State<AddDoctorsForm> {
                                       ),
                                       const SizedBox(height: 10),
                                       const Text(
-                                        'Your Tag has been added to the MediTag app.\nYou can now add your doctors.',
-                                        textAlign: TextAlign.center,
+                                        'Your doctor has been added successfully.',
+                                        style: TextStyle(
+                                            fontSize: 16, color: neutral500),
                                       ),
                                       const SizedBox(height: 20),
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (_) =>
-                                                      DoctorsListScreen()));
-                                        },
-                                        child: const Text('Done'),
+                                      Container(
+                                        height: 44,
+                                        width: 342,
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        DoctorsListScreen()));
+                                          },
+                                          child: const Text(
+                                            'Done',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ),
                                       ),
                                     ],
+                                    
                                   ),
                                 );
                               },

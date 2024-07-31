@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditap/screens/admin/dashboard.dart';
 import 'package:meditap/screens/admin/search.dart';
+import 'package:meditap/screens/admin/sign_in.dart';
+import 'package:meditap/screens/login_screen.dart';
 import 'package:meditap/utils/colors.dart';
 import 'package:meditap/utils/icons.dart';
 
@@ -26,9 +28,28 @@ class _AdminPageState extends State<AdminPage> {
       const Dashboard(),
       const Search(),
     ];
+    
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         automaticallyImplyLeading: false,
+        actions: currentIndex == 0
+            ? [
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => SignIn()),
+                      );
+                    },
+                    child: SvgPicture.string(MediTagIcons.logOut),
+                  ),
+                )
+              ]
+            : [],
+
+
         title: SvgPicture.string(MediTagIcons.mediTapLogo),
       ),
       body: items[currentIndex],

@@ -86,7 +86,7 @@ class WelcomeScreen extends StatelessWidget {
                                 ),
                                 child: SizedBox(
                                   height: 178,
-                                  width: 180,
+                                  width: Constants.deviceWidth(context) * 0.45,
                                   child: Column(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
@@ -99,17 +99,13 @@ class WelcomeScreen extends StatelessWidget {
                                       const Column(
                                         children: [
                                           Text(
-                                            'Are you looking for a',
+                                            textAlign: TextAlign.center,
+                                            'Are you looking for a Doctor?',
                                             style: TextStyle(
                                                 color: neutral500,
                                                 fontSize: 14),
                                           ),
-                                          Text(
-                                            "Doctor?",
-                                            style: TextStyle(
-                                                color: neutral500,
-                                                fontSize: 14),
-                                          )
+                                          
                                         ],
                                       ),
                                     ],
@@ -133,7 +129,7 @@ class WelcomeScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 height: 178,
-                                width: 180,
+                                width: Constants.deviceWidth(context) * 0.45,
                                 child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
@@ -145,14 +141,13 @@ class WelcomeScreen extends StatelessWidget {
                                     ),
                                     const Column(
                                       children: [
-                                        Text('Do you want to add',
+                                        Text(
+                                            'Do you want to add doctors to your tag?',
+                                            textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 color: neutral500,
                                                 fontSize: 14)),
-                                        Text("doctors to your tag?",
-                                            style: TextStyle(
-                                                color: neutral500,
-                                                fontSize: 14))
+                                        
                                       ],
                                     ),
                                   ],
