@@ -2,6 +2,8 @@
 
 MediTag is a Flutter-based mobile application that leverages NFC technology to provide quick access to contact information for doctors within a hospital. The app aims to enhance hospital efficiency and improve patient experience by streamlining access to doctors' information.
 
+# Admin Password is Starlight
+
 ## Features
 
 - **NFC Tag Reading:** Patients can scan NFC tags to quickly access a doctor's contact information.
