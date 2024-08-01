@@ -29,7 +29,7 @@ MediTag is a Flutter-based mobile application that leverages NFC technology to p
 ## Dependencies
 - Flutter
 - Dart
-- Hive (for database)
+- Hive (for local storage)
 - Provider (for state management)
 - Nfc_manager
 - Uuid (for unique doctor id)
